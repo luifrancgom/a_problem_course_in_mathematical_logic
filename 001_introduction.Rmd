@@ -1,0 +1,45 @@
+---
+title: "Introduction"
+date: 2020-05-02 17:36:01
+output:
+  html_document:
+    code_folding: hide
+    df_print: paged
+    highlight: tango
+    number_sections: yes
+    theme: flatly
+    toc: yes
+    toc_depth: 2
+bibliography: a_problem_course_in_mathematical_logic.bib
+link-citations: yes
+---
+
+<style>
+
+body {
+text-align: justify}
+
+</style>
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo      = TRUE, 
+                      warning   = FALSE, 
+                      message   = FALSE,
+                      fig.align = "center")
+```
+
+```{r libraries}
+
+
+```
+
+# Introduction
+
+This section is based on [@bilaniuk_problem_2009, Introduction]
+
+## Mathematical logic
+
+
+
+# Bibliography
+
