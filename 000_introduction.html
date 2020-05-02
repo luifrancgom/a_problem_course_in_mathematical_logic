@@ -1696,6 +1696,8 @@ summary {
 <ul>
 <li><a href="#introduction"><span class="toc-section-number">1</span> Introduction</a><ul>
 <li><a href="#mathematical-logic"><span class="toc-section-number">1.1</span> Mathematical logic</a></li>
+<li><a href="#organization-of-the-book"><span class="toc-section-number">1.2</span> Organization of the book</a></li>
+<li><a href="#prerequisites"><span class="toc-section-number">1.3</span> Prerequisites</a></li>
 </ul></li>
 <li><a href="#bibliography">Bibliography</a></li>
 </ul>
@@ -1712,6 +1714,58 @@ text-align: justify}
 <p>This section is based on <span class="citation">(Bilaniuk <a href="#ref-bilaniuk_problem_2009" role="doc-biblioref">2009</a>, Introduction)</span></p>
 <div id="mathematical-logic" class="section level2">
 <h2><span class="header-section-number">1.1</span> Mathematical logic</h2>
+<p>One difference of mathematics with other sciences is that mathematics depends on the notion of proof for determining the truth. At the contrary, other sciences depend on carefully analyzed experience</p>
+<ul>
+<li><p>A preliminary definition of proof is that a proof is any reasoned argument accepted by other mathematicians</p>
+<ul>
+<li><p>However a more precise definition is needed if one wishes to discover what mathematical reasoning can or cannot accomplish in principle</p></li>
+<li><p>Therefore one of the purposes of mathematical logic is to precise the notion of proof</p></li>
+</ul></li>
+</ul>
+<p>In general mathematical logic is concerned with formalizing and analyzing the kinds of reasoning used in the rest of mathematics. In that sense mathematical logic studies formal logical systems as mathematical objects in their own right in order to prove things about them</p>
+<ul>
+<li><p>Part of the problem with formalizing mathematical reasoning is the necessity of precisely specifying the languages in which it is to be done</p>
+<ul>
+<li>Languages which underly formal logical systems are, like programming languages, rigidly defined but much simpler and less flexible than natural languages</li>
+</ul></li>
+<li><p>A formal logical system also requires the careful specification of the allowable rules of reasoning, plus some notion of how to interpret statements in the underlying language and determine their truth</p></li>
+</ul>
+</div>
+<div id="organization-of-the-book" class="section level2">
+<h2><span class="header-section-number">1.2</span> Organization of the book</h2>
+<ul>
+<li><p>The <em>de facto</em> standard for formalizing mathematical systems is first-order logic</p>
+<ul>
+<li><p><strong>Part I</strong>: Develop propositional logic as a warm-up for the development of first-order logic</p></li>
+<li><p><strong>Part II</strong>: Develop first-order logic to formalize most mathematical reasoning</p>
+<ul>
+<li><p>If first-order logic can formalize most mathematical reasoning we may ask if mathematical reasoning can be automated</p>
+<ul>
+<li><p><strong>Decision Problem (Entscheidungsproblem)</strong>: Given a set <span class="math inline">\(\Sigma\)</span> of hypotheses and some statement <span class="math inline">\(\phi\)</span>, is there an efective method for determining whether or not the hypotheses in <span class="math inline">\(\Sigma\)</span> suffice to prove <span class="math inline">\(\phi\)</span>?</p>
+<ul>
+<li>In the course of trying to find a suitable formalization of the notion of efective method, mathematicians developed several abstract models of computation: recursive functions, <span class="math inline">\(\lambda\)</span>-calculus, turing machines and grammars</li>
+</ul></li>
+</ul></li>
+</ul></li>
+<li><p><strong>Part III</strong>: Explores two of the standard formalizations of the notion of effective method</p>
+<ul>
+<li><p>Recursive functions</p></li>
+<li><p>Turing machines</p></li>
+</ul></li>
+<li><p><strong>Part IV</strong>: Uses <strong>Part II</strong> and <strong>Part III</strong> to answer the <strong>Decision Problem (Entscheidungsproblem)</strong> for first-order logic</p>
+<ul>
+<li>The answer to the <strong>Decision Problem (Entscheidungsproblem)</strong> is negative for first-order logic</li>
+</ul></li>
+</ul></li>
+</ul>
+</div>
+<div id="prerequisites" class="section level2">
+<h2><span class="header-section-number">1.3</span> Prerequisites</h2>
+<ul>
+<li><p>Knowledge of the natural numbers</p></li>
+<li><p>Basic set theory</p></li>
+<li><p>Competence in handling abstraction and proofs, especially proofs by induction</p></li>
+</ul>
 </div>
 </div>
 <div id="bibliography" class="section level1 unnumbered">

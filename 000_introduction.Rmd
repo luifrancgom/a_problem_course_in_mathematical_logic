@@ -39,7 +39,53 @@ This section is based on [@bilaniuk_problem_2009, Introduction]
 
 ## Mathematical logic
 
+One difference of mathematics with other sciences is that mathematics depends on the notion of proof for determining the truth. At the contrary, other sciences depend on carefully analyzed experience
 
+- A preliminary definition of proof is that a proof is any reasoned argument accepted by other mathematicians
+
+    + However a more precise definition is needed if one wishes to discover what  mathematical  reasoning  can or cannot accomplish in principle
+    
+    + Therefore one of the purposes of mathematical logic is to precise the notion of proof
+    
+In general mathematical logic is concerned with formalizing and analyzing the kinds of reasoning used in the rest of mathematics. In that sense mathematical logic studies formal  logical  systems as  mathematical  objects in their own right  in order to prove things about them 
+
+- Part of the problem with formalizing mathematical reasoning is the necessity  of  precisely  specifying  the languages  in  which  it  is  to  be done
+
+    + Languages  which underly formal  logical systems are, like programming languages, rigidly defined but much simpler and less flexible than natural languages
+    
+- A formal logical system also requires the careful specification of the allowable rules of reasoning, plus some notion of how to interpret statements in the underlying language and determine their truth
+
+## Organization of the book
+
+- The _de facto_ standard for formalizing mathematical systems is first-order logic
+
+    + __Part I__: Develop propositional logic as a warm-up for the development of first-order logic
+    
+    + __Part II__: Develop first-order logic to formalize most mathematical reasoning
+    
+        + If first-order logic can formalize most mathematical reasoning we may ask if mathematical reasoning can be automated
+        
+            + __Decision Problem (Entscheidungsproblem)__: Given a set $\Sigma$ of hypotheses and some statement $\phi$, is there an efective method for determining whether or not the hypotheses in $\Sigma$ suffice to prove $\phi$?
+            
+                + In the course  of trying to find a suitable formalization of the notion of efective method, mathematicians developed several abstract models of computation: recursive functions, $\lambda$-calculus, turing machines and grammars
+    
+    + __Part III__: Explores two of the standard formalizations of the notion of effective method
+    
+        + Recursive functions
+        
+        + Turing machines
+        
+    + __Part IV__: Uses __Part II__ and __Part III__ to answer the __Decision Problem (Entscheidungsproblem)__ for first-order logic
+    
+        + The answer to the __Decision Problem (Entscheidungsproblem)__ is negative for first-order logic
+        
+## Prerequisites
+
+- Knowledge of the natural numbers
+
+- Basic set theory
+
+- Competence in handling abstraction and proofs, especially proofs by induction
 
 # Bibliography
 
