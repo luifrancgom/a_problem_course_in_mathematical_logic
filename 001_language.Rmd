@@ -30,12 +30,126 @@ knitr::opts_chunk$set(echo      = TRUE,
 
 ```{r libraries}
 
-
+library(tidyverse)
+library(latex2exp)
 ```
 
 # Language
 
 This section is based on [@bilaniuk_problem_2009, Chapter 1]
+
+The primary objective of propositional logic, $\mathcal{L}_P$,is to formalize the reasoning that can be done using connectives like _not_, _and_, _or_ and _if ... then_
+
+__Definition__ The symbols of $\mathcal{L}_P$ are
+
+- Parentheses: $($ and $)$
+- Connectives: $\neg$ and $\to$
+- Atomic formulas: $A_0, A_1, A_2, \dots , A_n, \dots$
+
+Now we specify how the symbols of $\mathcal{L}_P$ can be put together
+
+__Definition__ The formulas of $\mathcal{L}_P$ are any finite sequences of $\mathcal{L}_P$ symbols which satisfy the following rules
+
+- Every atomic formula is a formula
+- If $\alpha$ is a formula then $(\neg \alpha)$ is a formula
+- If $\alpha$ and $\beta$ are formulas then $\alpha \to \beta$ is a formula
+- No other sequence of symbols in $\mathcal{L}_P$ are formulas
+
+    + The parentheses are used to group other symbols together
+    + The atomic formulas represent statements that cannot be broken down any further using $\neg$ or $\rightarrow$
+    + Every atomic formula is a formula and every other formula is built from shorter formulas using $\neg$, $\rightarrow$, $($ and $)$ in particular ways
+    + The last part points out that there are exactly three rules to form formulas in $\mathcal{L}_P$
+    
+__Problem 1__ _Why  are the  following not formulas of $\mathcal{L}_P$? There might be more than one reason_ $\dots$
+
+- $A_{-56}$
+
+    + $A_{ \color{red}{-56}}$ is not an atomic formula
+    
+- $(Y \to A)$
+
+    + $\color{red}{Y}$ and $\color{red}{A}$ are not atomic formulas
+    
+- $(A_7 \leftarrow A_4)$
+
+    + $\color{red}{\leftarrow}$ is not a connective
+
+- $A_7 \to (\neg A_5))$
+
+    + $($ is missing at the beginning of the sequence
+    
+        + $\color{red}{(}A_7 \to (\neg A_5))$
+    
+- $(A_8A_9 \to A_1043998$
+    
+    + $)$ is missing at the end of the sequence
+    
+        + $(A_8A_9 \to A_1043998 \color{red}{)}$
+    
+    + $\color{red}{A_8A_9}$ is not a formula
+    
+- $(((\lnot A_1) \to (A_\ell \to A_7) \to A_7)$
+    
+    + One $)$ is missing
+    
+        + $(((\lnot A_1) \to (A_\ell \to A_7) \color{red}{)} \to A_7)$
+            
+    + $A_{\color{red}{\ell}}$ is not an atomic formula
+    
+__Problem 2__ _Show that every formula of $\mathcal{L}_P$ has the same number of left  parentheses as it has of right parentheses_
+
+- Proof by strong induction where $n$ is the number of connectives in a formula of $\mathcal{L}_P$
+
+    + _Base step_ $(n = 0)$: If $\gamma$ is a formula with 0 connectives it must be an atomic formula. Therefore $\gamma$ has the same number of $($ and $)$.
+    
+    + _Induction hypothesis_ $(n \leq k)$: If $\gamma$ is a formula with $n \leq k$ connectives then it has the same number of $($ and $)$.
+    
+    + _Induction hypothesis_ $(n = k + 1)$: If $\gamma$ is a formula with $n = k + 1$ connectives then we have two possibilities:
+    
+        + $\gamma = (\neg \alpha)$ where $\alpha$ has $n = k$ connectives
+        
+        + $\gamma = (\alpha \to \beta)$ where $\alpha$ and $\beta$ have $n \leq k$ connectives
+        
+            + If $\gamma = (\neg \alpha)$ then by the _induction hypothesis_ $\alpha$ has the same number of $($ and $)$. Therefore $\gamma$ also has the same number of $($ and $)$
+            
+            + If $\gamma = (\alpha \to \beta)$ then by the _induction hypothesis_ $\alpha$ and $\beta$ has the same number of $($ and $)$. Therefore $\gamma$ also has the same number of $($ and $)$
+            
+__Problem 3__ _Suppose $\alpha$ is any formula of $\mathcal{L}_P$.  Let $\ell(\alpha)$ be the length of $\alpha$ as a sequence of symbols and let $p(\alpha)$ be the number of parentheses (counting both left and right parentheses) in $\alpha$.  What are the minimum and maximum values of $p(\alpha) / \ell(\alpha)$?_
+
+- The minimum values of $p(\alpha)$ and $\ell(\alpha)$ are 0 and 1 which is the case when $\alpha$ is an atomic formula. Therefore the minimum value of $p(\alpha) / \ell(\alpha)$ is 0 
+
+- To find the maximum value of $p(\alpha) / \ell(\alpha)$ it is important to point out that:
+
+    + $\ell(\alpha) = p(\alpha) + c(\alpha) + a(\alpha)$ where $c(\alpha)$ and $a(\alpha)$ are the number of connectives and atomic formulas in $\alpha$
+    
+    + $p(\alpha) = 2c(\alpha)$
+    
+    + To maximize $p(\alpha) / \ell(\alpha)$ we need to minimize $\ell(\alpha)$ by choosing the minimum value of $a(\alpha)$
+    
+        + The minimum for $a(\alpha)$ is 1 and corresponds to formulas corresponds to formulas built from negating a formula at each step and starting with an atomic formula: $A_0, (\neg A_0), (\neg (\neg A_0)), \dots$
+        
+        + For this case we have that $p(\alpha) / \ell(\alpha) = \frac{2c(\alpha)}{3c(\alpha) + 1}$ where $c(\alpha) \in \{ 0, 1, 2, \dots, n\}$
+        
+            + $p(\alpha) / \ell(\alpha)$ doesn't have a maximum but when $c(\alpha) \to \infty$ then $p(\alpha) / \ell(\alpha) \to 2 /3 \approx 0.667$ 
+            
+```{r}
+
+ggplot(tibble(x = 0:100), aes(x)) + 
+    stat_function(fun   = ~ 2 * .x / (3 * .x + 1) , 
+                  geom  = "point",
+                  shape = 21,
+                  fill  = "#E31A1C") + 
+    geom_hline(yintercept = 2/3,
+               color      = "#FF7F00") +
+    scale_y_continuous(breaks = seq(0, 4/6, 1/6), 
+                       labels = scales::number_format(accuracy = 0.001)) +
+    labs(x = TeX("$c(\\alpha)$"),
+         y = TeX("$\\frac{2c(\\alpha)}{3c(\\alpha) + 1}$"))  +
+    theme(panel.border      = element_rect(fill = NA, color = "black"),
+          plot.background   = element_rect(fill = "#f3fcfc"),          
+          panel.background  = element_rect(fill = "#f3f7fc"))
+```
+
 
 # Bibliography
 

@@ -1539,6 +1539,107 @@ window.onload = function() {
 </script>
 
 
+<style type="text/css">code{white-space: pre;}</style>
+<style type="text/css" data-origin="pandoc">
+code.sourceCode > span { display: inline-block; line-height: 1.25; }
+code.sourceCode > span { color: inherit; text-decoration: inherit; }
+code.sourceCode > span:empty { height: 1.2em; }
+.sourceCode { overflow: visible; }
+code.sourceCode { white-space: pre; position: relative; }
+div.sourceCode { margin: 1em 0; }
+pre.sourceCode { margin: 0; }
+@media screen {
+div.sourceCode { overflow: auto; }
+}
+@media print {
+code.sourceCode { white-space: pre-wrap; }
+code.sourceCode > span { text-indent: -5em; padding-left: 5em; }
+}
+pre.numberSource code
+  { counter-reset: source-line 0; }
+pre.numberSource code > span
+  { position: relative; left: -4em; counter-increment: source-line; }
+pre.numberSource code > span > a:first-child::before
+  { content: counter(source-line);
+    position: relative; left: -1em; text-align: right; vertical-align: baseline;
+    border: none; display: inline-block;
+    -webkit-touch-callout: none; -webkit-user-select: none;
+    -khtml-user-select: none; -moz-user-select: none;
+    -ms-user-select: none; user-select: none;
+    padding: 0 4px; width: 4em;
+    color: #aaaaaa;
+  }
+pre.numberSource { margin-left: 3em; border-left: 1px solid #aaaaaa;  padding-left: 4px; }
+div.sourceCode
+  {  background-color: #f8f8f8; }
+@media screen {
+code.sourceCode > span > a:first-child::before { text-decoration: underline; }
+}
+code span.al { color: #ef2929; } /* Alert */
+code span.an { color: #8f5902; font-weight: bold; font-style: italic; } /* Annotation */
+code span.at { color: #c4a000; } /* Attribute */
+code span.bn { color: #0000cf; } /* BaseN */
+code span.cf { color: #204a87; font-weight: bold; } /* ControlFlow */
+code span.ch { color: #4e9a06; } /* Char */
+code span.cn { color: #000000; } /* Constant */
+code span.co { color: #8f5902; font-style: italic; } /* Comment */
+code span.cv { color: #8f5902; font-weight: bold; font-style: italic; } /* CommentVar */
+code span.do { color: #8f5902; font-weight: bold; font-style: italic; } /* Documentation */
+code span.dt { color: #204a87; } /* DataType */
+code span.dv { color: #0000cf; } /* DecVal */
+code span.er { color: #a40000; font-weight: bold; } /* Error */
+code span.ex { } /* Extension */
+code span.fl { color: #0000cf; } /* Float */
+code span.fu { color: #000000; } /* Function */
+code span.im { } /* Import */
+code span.in { color: #8f5902; font-weight: bold; font-style: italic; } /* Information */
+code span.kw { color: #204a87; font-weight: bold; } /* Keyword */
+code span.op { color: #ce5c00; font-weight: bold; } /* Operator */
+code span.ot { color: #8f5902; } /* Other */
+code span.pp { color: #8f5902; font-style: italic; } /* Preprocessor */
+code span.sc { color: #000000; } /* SpecialChar */
+code span.ss { color: #4e9a06; } /* SpecialString */
+code span.st { color: #4e9a06; } /* String */
+code span.va { color: #000000; } /* Variable */
+code span.vs { color: #4e9a06; } /* VerbatimString */
+code span.wa { color: #8f5902; font-weight: bold; font-style: italic; } /* Warning */
+
+.sourceCode .row {
+  width: 100%;
+}
+.sourceCode {
+  overflow-x: auto;
+}
+.code-folding-btn {
+  margin-right: -30px;
+}
+</style>
+<script>
+// apply pandoc div.sourceCode style to pre.sourceCode instead
+(function() {
+  var sheets = document.styleSheets;
+  for (var i = 0; i < sheets.length; i++) {
+    if (sheets[i].ownerNode.dataset["origin"] !== "pandoc") continue;
+    try { var rules = sheets[i].cssRules; } catch (e) { continue; }
+    for (var j = 0; j < rules.length; j++) {
+      var rule = rules[j];
+      // check if there is a div.sourceCode rule
+      if (rule.type !== rule.STYLE_RULE || rule.selectorText !== "div.sourceCode") continue;
+      var style = rule.style.cssText;
+      // check if color or background-color is set
+      if (rule.style.color === '' && rule.style.backgroundColor === '') continue;
+      // replace div.sourceCode by a pre.sourceCode rule
+      sheets[i].deleteRule(j);
+      sheets[i].insertRule('pre.sourceCode{' + style + '}', j);
+    }
+  }
+})();
+</script>
+<style type="text/css">
+  pre:not([class]) {
+    background-color: white;
+  }
+</style>
 
 
 <style type="text/css">
@@ -1705,9 +1806,119 @@ body {
 text-align: justify}
 
 </style>
+<div class="sourceCode" id="cb1"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb1-1"><a href="#cb1-1"></a><span class="kw">library</span>(tidyverse)</span>
+<span id="cb1-2"><a href="#cb1-2"></a><span class="kw">library</span>(latex2exp)</span></code></pre></div>
 <div id="language" class="section level1">
 <h1><span class="header-section-number">1</span> Language</h1>
 <p>This section is based on <span class="citation">(Bilaniuk <a href="#ref-bilaniuk_problem_2009" role="doc-biblioref">2009</a>, Chapter 1)</span></p>
+<p>The primary objective of propositional logic, <span class="math inline">\(\mathcal{L}_P\)</span>,is to formalize the reasoning that can be done using connectives like <em>not</em>, <em>and</em>, <em>or</em> and <em>if … then</em></p>
+<p><strong>Definition</strong> The symbols of <span class="math inline">\(\mathcal{L}_P\)</span> are</p>
+<ul>
+<li>Parentheses: <span class="math inline">\((\)</span> and <span class="math inline">\()\)</span></li>
+<li>Connectives: <span class="math inline">\(\neg\)</span> and <span class="math inline">\(\to\)</span></li>
+<li>Atomic formulas: <span class="math inline">\(A_0, A_1, A_2, \dots , A_n, \dots\)</span></li>
+</ul>
+<p>Now we specify how the symbols of <span class="math inline">\(\mathcal{L}_P\)</span> can be put together</p>
+<p><strong>Definition</strong> The formulas of <span class="math inline">\(\mathcal{L}_P\)</span> are any finite sequences of <span class="math inline">\(\mathcal{L}_P\)</span> symbols which satisfy the following rules</p>
+<ul>
+<li><p>Every atomic formula is a formula</p></li>
+<li><p>If <span class="math inline">\(\alpha\)</span> is a formula then <span class="math inline">\((\neg \alpha)\)</span> is a formula</p></li>
+<li><p>If <span class="math inline">\(\alpha\)</span> and <span class="math inline">\(\beta\)</span> are formulas then <span class="math inline">\(\alpha \to \beta\)</span> is a formula</p></li>
+<li><p>No other sequence of symbols in <span class="math inline">\(\mathcal{L}_P\)</span> are formulas</p>
+<ul>
+<li>The parentheses are used to group other symbols together</li>
+<li>The atomic formulas represent statements that cannot be broken down any further using <span class="math inline">\(\neg\)</span> or <span class="math inline">\(\rightarrow\)</span></li>
+<li>Every atomic formula is a formula and every other formula is built from shorter formulas using <span class="math inline">\(\neg\)</span>, <span class="math inline">\(\rightarrow\)</span>, <span class="math inline">\((\)</span> and <span class="math inline">\()\)</span> in particular ways</li>
+<li>The last part points out that there are exactly three rules to form formulas in <span class="math inline">\(\mathcal{L}_P\)</span></li>
+</ul></li>
+</ul>
+<p><strong>Problem 1</strong> <em>Why are the following not formulas of <span class="math inline">\(\mathcal{L}_P\)</span>? There might be more than one reason</em> <span class="math inline">\(\dots\)</span></p>
+<ul>
+<li><p><span class="math inline">\(A_{-56}\)</span></p>
+<ul>
+<li><span class="math inline">\(A_{ \color{red}{-56}}\)</span> is not an atomic formula</li>
+</ul></li>
+<li><p><span class="math inline">\((Y \to A)\)</span></p>
+<ul>
+<li><span class="math inline">\(\color{red}{Y}\)</span> and <span class="math inline">\(\color{red}{A}\)</span> are not atomic formulas</li>
+</ul></li>
+<li><p><span class="math inline">\((A_7 \leftarrow A_4)\)</span></p>
+<ul>
+<li><span class="math inline">\(\color{red}{\leftarrow}\)</span> is not a connective</li>
+</ul></li>
+<li><p><span class="math inline">\(A_7 \to (\neg A_5))\)</span></p>
+<ul>
+<li><p><span class="math inline">\((\)</span> is missing at the beginning of the sequence</p>
+<ul>
+<li><span class="math inline">\(\color{red}{(}A_7 \to (\neg A_5))\)</span></li>
+</ul></li>
+</ul></li>
+<li><p><span class="math inline">\((A_8A_9 \to A_1043998\)</span></p>
+<ul>
+<li><p><span class="math inline">\()\)</span> is missing at the end of the sequence</p>
+<ul>
+<li><span class="math inline">\((A_8A_9 \to A_1043998 \color{red}{)}\)</span></li>
+</ul></li>
+<li><p><span class="math inline">\(\color{red}{A_8A_9}\)</span> is not a formula</p></li>
+</ul></li>
+<li><p><span class="math inline">\((((\lnot A_1) \to (A_\ell \to A_7) \to A_7)\)</span></p>
+<ul>
+<li><p>One <span class="math inline">\()\)</span> is missing</p>
+<ul>
+<li><span class="math inline">\((((\lnot A_1) \to (A_\ell \to A_7) \color{red}{)} \to A_7)\)</span></li>
+</ul></li>
+<li><p><span class="math inline">\(A_{\color{red}{\ell}}\)</span> is not an atomic formula</p></li>
+</ul></li>
+</ul>
+<p><strong>Problem 2</strong> <em>Show that every formula of <span class="math inline">\(\mathcal{L}_P\)</span> has the same number of left parentheses as it has of right parentheses</em></p>
+<ul>
+<li><p>Proof by strong induction where <span class="math inline">\(n\)</span> is the number of connectives in a formula of <span class="math inline">\(\mathcal{L}_P\)</span></p>
+<ul>
+<li><p><em>Base step</em> <span class="math inline">\((n = 0)\)</span>: If <span class="math inline">\(\gamma\)</span> is a formula with 0 connectives it must be an atomic formula. Therefore <span class="math inline">\(\gamma\)</span> has the same number of <span class="math inline">\((\)</span> and <span class="math inline">\()\)</span>.</p></li>
+<li><p><em>Induction hypothesis</em> <span class="math inline">\((n \leq k)\)</span>: If <span class="math inline">\(\gamma\)</span> is a formula with <span class="math inline">\(n \leq k\)</span> connectives then it has the same number of <span class="math inline">\((\)</span> and <span class="math inline">\()\)</span>.</p></li>
+<li><p><em>Induction hypothesis</em> <span class="math inline">\((n = k + 1)\)</span>: If <span class="math inline">\(\gamma\)</span> is a formula with <span class="math inline">\(n = k + 1\)</span> connectives then we have two possibilities:</p>
+<ul>
+<li><p><span class="math inline">\(\gamma = (\neg \alpha)\)</span> where <span class="math inline">\(\alpha\)</span> has <span class="math inline">\(n = k\)</span> connectives</p></li>
+<li><p><span class="math inline">\(\gamma = (\alpha \to \beta)\)</span> where <span class="math inline">\(\alpha\)</span> and <span class="math inline">\(\beta\)</span> have <span class="math inline">\(n \leq k\)</span> connectives</p>
+<ul>
+<li><p>If <span class="math inline">\(\gamma = (\neg \alpha)\)</span> then by the <em>induction hypothesis</em> <span class="math inline">\(\alpha\)</span> has the same number of <span class="math inline">\((\)</span> and <span class="math inline">\()\)</span>. Therefore <span class="math inline">\(\gamma\)</span> also has the same number of <span class="math inline">\((\)</span> and <span class="math inline">\()\)</span></p></li>
+<li><p>If <span class="math inline">\(\gamma = (\alpha \to \beta)\)</span> then by the <em>induction hypothesis</em> <span class="math inline">\(\alpha\)</span> and <span class="math inline">\(\beta\)</span> has the same number of <span class="math inline">\((\)</span> and <span class="math inline">\()\)</span>. Therefore <span class="math inline">\(\gamma\)</span> also has the same number of <span class="math inline">\((\)</span> and <span class="math inline">\()\)</span></p></li>
+</ul></li>
+</ul></li>
+</ul></li>
+</ul>
+<p><strong>Problem 3</strong> <em>Suppose <span class="math inline">\(\alpha\)</span> is any formula of <span class="math inline">\(\mathcal{L}_P\)</span>. Let <span class="math inline">\(\ell(\alpha)\)</span> be the length of <span class="math inline">\(\alpha\)</span> as a sequence of symbols and let <span class="math inline">\(p(\alpha)\)</span> be the number of parentheses (counting both left and right parentheses) in <span class="math inline">\(\alpha\)</span>. What are the minimum and maximum values of <span class="math inline">\(p(\alpha) / \ell(\alpha)\)</span>?</em></p>
+<ul>
+<li><p>The minimum values of <span class="math inline">\(p(\alpha)\)</span> and <span class="math inline">\(\ell(\alpha)\)</span> are 0 and 1 which is the case when <span class="math inline">\(\alpha\)</span> is an atomic formula. Therefore the minimum value of <span class="math inline">\(p(\alpha) / \ell(\alpha)\)</span> is 0</p></li>
+<li><p>To find the maximum value of <span class="math inline">\(p(\alpha) / \ell(\alpha)\)</span> it is important to point out that:</p>
+<ul>
+<li><p><span class="math inline">\(\ell(\alpha) = p(\alpha) + c(\alpha) + a(\alpha)\)</span> where <span class="math inline">\(c(\alpha)\)</span> and <span class="math inline">\(a(\alpha)\)</span> are the number of connectives and atomic formulas in <span class="math inline">\(\alpha\)</span></p></li>
+<li><p><span class="math inline">\(p(\alpha) = 2c(\alpha)\)</span></p></li>
+<li><p>To maximize <span class="math inline">\(p(\alpha) / \ell(\alpha)\)</span> we need to minimize <span class="math inline">\(\ell(\alpha)\)</span> by choosing the minimum value of <span class="math inline">\(a(\alpha)\)</span></p>
+<ul>
+<li><p>The minimum for <span class="math inline">\(a(\alpha)\)</span> is 1 and corresponds to formulas corresponds to formulas built from negating a formula at each step and starting with an atomic formula: <span class="math inline">\(A_0, (\neg A_0), (\neg (\neg A_0)), \dots\)</span></p></li>
+<li><p>For this case we have that <span class="math inline">\(p(\alpha) / \ell(\alpha) = \frac{2c(\alpha)}{3c(\alpha) + 1}\)</span> where <span class="math inline">\(c(\alpha) \in \{ 0, 1, 2, \dots, n\}\)</span></p>
+<ul>
+<li><span class="math inline">\(p(\alpha) / \ell(\alpha)\)</span> doesn’t have a maximum but when <span class="math inline">\(c(\alpha) \to \infty\)</span> then <span class="math inline">\(p(\alpha) / \ell(\alpha) \to 2 /3 \approx 0.667\)</span></li>
+</ul></li>
+</ul></li>
+</ul></li>
+</ul>
+<div class="sourceCode" id="cb2"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb2-1"><a href="#cb2-1"></a><span class="kw">ggplot</span>(<span class="kw">tibble</span>(<span class="dt">x =</span> <span class="dv">0</span><span class="op">:</span><span class="dv">100</span>), <span class="kw">aes</span>(x)) <span class="op">+</span><span class="st"> </span></span>
+<span id="cb2-2"><a href="#cb2-2"></a><span class="st">    </span><span class="kw">stat_function</span>(<span class="dt">fun   =</span> <span class="op">~</span><span class="st"> </span><span class="dv">2</span> <span class="op">*</span><span class="st"> </span>.x <span class="op">/</span><span class="st"> </span>(<span class="dv">3</span> <span class="op">*</span><span class="st"> </span>.x <span class="op">+</span><span class="st"> </span><span class="dv">1</span>) , </span>
+<span id="cb2-3"><a href="#cb2-3"></a>                  <span class="dt">geom  =</span> <span class="st">&quot;point&quot;</span>,</span>
+<span id="cb2-4"><a href="#cb2-4"></a>                  <span class="dt">shape =</span> <span class="dv">21</span>,</span>
+<span id="cb2-5"><a href="#cb2-5"></a>                  <span class="dt">fill  =</span> <span class="st">&quot;#E31A1C&quot;</span>) <span class="op">+</span><span class="st"> </span></span>
+<span id="cb2-6"><a href="#cb2-6"></a><span class="st">    </span><span class="kw">geom_hline</span>(<span class="dt">yintercept =</span> <span class="dv">2</span><span class="op">/</span><span class="dv">3</span>,</span>
+<span id="cb2-7"><a href="#cb2-7"></a>               <span class="dt">color      =</span> <span class="st">&quot;#FF7F00&quot;</span>) <span class="op">+</span></span>
+<span id="cb2-8"><a href="#cb2-8"></a><span class="st">    </span><span class="kw">scale_y_continuous</span>(<span class="dt">breaks =</span> <span class="kw">seq</span>(<span class="dv">0</span>, <span class="dv">4</span><span class="op">/</span><span class="dv">6</span>, <span class="dv">1</span><span class="op">/</span><span class="dv">6</span>), </span>
+<span id="cb2-9"><a href="#cb2-9"></a>                       <span class="dt">labels =</span> scales<span class="op">::</span><span class="kw">number_format</span>(<span class="dt">accuracy =</span> <span class="fl">0.001</span>)) <span class="op">+</span></span>
+<span id="cb2-10"><a href="#cb2-10"></a><span class="st">    </span><span class="kw">labs</span>(<span class="dt">x =</span> <span class="kw">TeX</span>(<span class="st">&quot;$c(</span><span class="ch">\\</span><span class="st">alpha)$&quot;</span>),</span>
+<span id="cb2-11"><a href="#cb2-11"></a>         <span class="dt">y =</span> <span class="kw">TeX</span>(<span class="st">&quot;$</span><span class="ch">\\</span><span class="st">frac{2c(</span><span class="ch">\\</span><span class="st">alpha)}{3c(</span><span class="ch">\\</span><span class="st">alpha) + 1}$&quot;</span>))  <span class="op">+</span></span>
+<span id="cb2-12"><a href="#cb2-12"></a><span class="st">    </span><span class="kw">theme</span>(<span class="dt">panel.border      =</span> <span class="kw">element_rect</span>(<span class="dt">fill =</span> <span class="ot">NA</span>, <span class="dt">color =</span> <span class="st">&quot;black&quot;</span>),</span>
+<span id="cb2-13"><a href="#cb2-13"></a>          <span class="dt">plot.background   =</span> <span class="kw">element_rect</span>(<span class="dt">fill =</span> <span class="st">&quot;#f3fcfc&quot;</span>),          </span>
+<span id="cb2-14"><a href="#cb2-14"></a>          <span class="dt">panel.background  =</span> <span class="kw">element_rect</span>(<span class="dt">fill =</span> <span class="st">&quot;#f3f7fc&quot;</span>))</span></code></pre></div>
+<p><img src="data:image/png;base64,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" width="672" style="display: block; margin: auto;" /></p>
 </div>
 <div id="bibliography" class="section level1 unnumbered">
 <h1>Bibliography</h1>
