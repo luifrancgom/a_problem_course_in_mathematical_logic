@@ -120,13 +120,13 @@ __Problem 3__ _Suppose $\alpha$ is any formula of $\mathcal{L}_P$.  Let $\ell(\a
 
 - To find the maximum value of $p(\alpha) / \ell(\alpha)$ it is important to point out that:
 
-    + $\ell(\alpha) = p(\alpha) + c(\alpha) + a(\alpha)$ where $c(\alpha)$ and $a(\alpha)$ are the number of connectives and atomic formulas in $\alpha$
+    + $\ell(\alpha) = p(\alpha) + c(\alpha) + s(\alpha)$ where $c(\alpha)$ and $a(\alpha)$ are the number of connectives and atomic formulas in $\alpha$
     
     + $p(\alpha) = 2c(\alpha)$
     
     + To maximize $p(\alpha) / \ell(\alpha)$ we need to minimize $\ell(\alpha)$ by choosing the minimum value of $a(\alpha)$
     
-        + The minimum for $a(\alpha)$ is 1 and corresponds to formulas corresponds to formulas built from negating a formula at each step and starting with an atomic formula: $A_0, (\neg A_0), (\neg (\neg A_0)), \dots$
+        + The minimum value of $a(\alpha)$ is 1 and corresponds to formulas built from negating a formula at each step and starting with an atomic formula: $A_0, (\neg A_0), (\neg (\neg A_0)), \dots$
         
         + For this case we have that $p(\alpha) / \ell(\alpha) = \frac{2c(\alpha)}{3c(\alpha) + 1}$ where $c(\alpha) \in \{ 0, 1, 2, \dots, n\}$
         
@@ -150,6 +150,34 @@ ggplot(tibble(x = 0:100), aes(x)) +
           panel.background  = element_rect(fill = "#f3f7fc"))
 ```
 
+__Problem 4__ *Suppose $\alpha$ is any formula of $\mathcal{L}_P$.  Let $a(\alpha)$ be the number of atomic formulas in $\alpha$ (counting repetitions) and let $c_{\to}(\alpha)$ be the number of occurrences of $\to$ in $\alpha$. Show that $a(\alpha) = c_{\to}(\alpha) + 1$.*
+
+- Proof by strong induction where $n$ is th number of connectives in a formula  
+
+    + _Base step_ $(n = 1)$: If $\gamma$ is a formula with 0 connectives it must be an atomic formula. Therefore $\gamma$ has 0 occurences of $\to$ and 1 occurence of an atomic formula.
+    
+    + _Induction hypothesis_ $(n \leq k)$: If $\gamma$ is a formula with $n \leq k$ connectives then $a(\gamma) = c_{\to}(\gamma) + 1$ 
+    
+    + _Induction hypothesis_ $(n = k + 1)$: If $\gamma$ is a formula with $n = k + 1$ connectives then we have two possibilities:
+    
+        + $\gamma = (\neg \alpha)$ where $\alpha$ is a formula with $n = k$ connectives
+        
+        + $\gamma = (\alpha \to \beta)$ where $\alpha$ and $\beta$ have $n \leq k$ connectives
+        
+            + If $\gamma = (\neg \alpha)$ then by the _induction hypothesis_ $a(\alpha) = c_{\to}(\alpha) + 1$. Therefore for $\gamma$ we have that $a(\gamma) = c_{\to}(\gamma) + 1$
+            
+            + If $\gamma = (\alpha \to \beta)$ then by the _induction hypothesis_ $a(\alpha) = c_{\to}(\alpha) + 1$ and $a(\beta) = c_{\to}(\beta) + 1$. Therefore:
+            
+                + $c_{\to}(\gamma) = c_{\to}(\alpha) + c_{\to}(\beta) + 1$
+            
+                + $\begin{split}
+                   a(\gamma) & = a(\alpha) + a(\beta) \\
+                   & = c_{\to}(\alpha) + 1 + c_{\to}(\beta) + 1\\
+                   & = c_{\to}(\alpha) + c_{\to}(\beta) + 1 + 1 \\
+                   & = c_{\to}(\gamma) + 1
+                   \end{split}$
+
+__Problem 5__ _What are the possible lengths of formulas of $\mathcal{L}_P$? Prove it._
 
 # Bibliography
 
