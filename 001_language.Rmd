@@ -60,6 +60,8 @@ __Definition__ The formulas of $\mathcal{L}_P$ are any finite sequences of $\mat
     + Every atomic formula is a formula and every other formula is built from shorter formulas using $\neg$, $\rightarrow$, $($ and $)$ in particular ways
     + The last part points out that there are exactly three rules to form formulas in $\mathcal{L}_P$
     
+## Problems 1-7 and solutions
+    
 __Problem 1__ _Why  are the  following not formulas of $\mathcal{L}_P$? There might be more than one reason_ $\dots$
 
 - $A_{-56}$
@@ -179,5 +181,275 @@ __Problem 4__ *Suppose $\alpha$ is any formula of $\mathcal{L}_P$.  Let $a(\alph
 
 __Problem 5__ _What are the possible lengths of formulas of $\mathcal{L}_P$? Prove it._
 
-# Bibliography
+We have that 
 
+- $\ell(\alpha) = p(\alpha) + c(\alpha) + a(\alpha)$
+
+- $p(\alpha) = 2c(\alpha)$
+
+- $c(\alpha) = c_{\neg}(\alpha) + c_{\to}(\alpha)$ where $c_{\neg}(\alpha)$ is the number of occurrences of $\neg$ in $\alpha$
+
+- $a(\alpha) = c_{\to}(\alpha) + 1$
+
+    + Therefore $\ell(\alpha) = 4c_{\to}(\alpha) + 3c_{\neg}(\alpha)$ where $c_{\to}(\alpha) \in \{ 0, 1, 2, \dots, n\}$ and $c_{\neg}(\alpha) \in \{ 0, 1, 2, \dots, n\}$
+    
+        + We can fix $c_{\neg}(\alpha) = 0, 1, 2, 3$ in the rows and use $c_{\to}(\alpha) \in \{ 0, 1, 2, \dots n\}$ in the columns to build the following matrix:
+        
+            + $\begin{matrix}
+                              & \color{red}{0} & \color{red}{1} & \color{red}{2} & \color{red}{3} & \cdots & \color{red}{n}  \\
+               \color{red}{0} &              1 &              5 &              9 &             13 & \cdots & 4n + 1          \\
+               \color{red}{1} &              4 &              8 &             12 &             16 & \cdots & 4n + 4          \\
+               \color{red}{2} &              7 &             11 &             15 &             19 & \cdots & 4n + 7          \\
+               \color{red}{3} &             10 &             14 &             18 &             22 & \cdots & 4n + 10         \\
+               \end{matrix}$
+            
+Therefore we can see that the possible lengths of formulas of $\mathcal{L}_P$ are $1, 4, 5$ and $7, 8, 9, 10, \dots, n$
+
+__Problem 6__ _Find a way for doing without parentheses or other punctuation symbols in defining a formal language for propositional logic._
+
+A possible way is to use the _polish notation_ invented by Jan Lukasiewicz as mentioned in [@church_introduction_1956, p 38]. Another option is to use _reverse polish notation_ used in some Hewlett-Packard calculators
+
+- In our case _polish notation_ is apply in the following way:
+
+    + $(\alpha \to \beta)$ can be written as $\to \alpha \beta$
+
+    + $(\neg \alpha)$ can be written as $\neg \alpha$
+
+        + For example $((\neg \alpha) \to \beta)$, $(\alpha \to (\neg \beta))$, $((\neg \alpha) \to (\neg \beta))$, $(\neg (\alpha \to \beta))$, $(\neg ( (\neg \alpha) \to \beta))$, $(\neg ( \alpha \to (\neg \beta)))$ and $(\neg ( (\neg \alpha) \to (\neg \beta)))$ are written as:
+    
+            + $\to \neg \alpha \beta$
+        
+            + $\to \alpha \neg \beta$
+        
+            + $\to \neg \alpha \neg \beta$
+        
+            + $\neg \to \alpha \beta$
+        
+            + $\neg \to \neg \alpha \beta$
+        
+            + $\neg \to \alpha \neg \beta$
+        
+            + $\neg \to \neg \alpha \neg \beta$
+            
+- In our case _reverse polish notation_ is apply in the following way:
+
+    + $(\alpha \to \beta)$ can be written as $\alpha \beta \to$
+
+    + $(\neg \alpha)$ can be written as $\alpha \neg$
+
+        + For example $((\neg \alpha) \to \beta)$, $(\alpha \to (\neg \beta))$, $((\neg \alpha) \to (\neg \beta))$, $(\neg (\alpha \to \beta))$, $(\neg ( (\neg \alpha) \to \beta))$, $(\neg ( \alpha \to (\neg \beta)))$ and $(\neg ( (\neg \alpha) \to (\neg \beta)))$ are written as:
+    
+            + $\alpha \neg \beta \to$
+        
+            + $\alpha \beta \neg \to$
+        
+            + $\alpha \neg \beta \neg \to$
+        
+            + $\alpha \beta \to \neg$
+        
+            + $\alpha \neg \beta \to \neg$
+        
+            + $\alpha \beta \neg \to \neg$
+        
+            + $\alpha \neg \beta \neg \to \neg$
+            
+__Problem 7__ _Show that the set of formulas of $\mathcal{L}_P$ is countable._
+
+Let's define the following sets
+
+- $S_{\mathcal{L}_P} = \{ (, ), \neg, \to, A_0, A_1, A_2, \dots, A_n, \dots \}$ the set of symbols of $\mathcal{L}_P$
+
+    + Because $\{ A_0, A_1, A_2, \dots, A_n, \dots \}$ is countable then $S_{\mathcal{L}_P}$ is countable
+    
+        + $S_{\mathcal{L}_P}^i = \underbrace{S_{\mathcal{L}_P} \times \dots \times S_{\mathcal{L}_P}}_\text{i times}$ for $i = 1, 4, 5, 7, 8, 9, 10, \dots, n$ are countable 
+
+            + $S_{\mathcal{L}_P} = \bigcup_{i = 1}^n S_{\mathcal{L}_P}^i$ is also countable
+          
+-  $F_{\mathcal{L}_P \ell_i}$ the formulas of $\mathcal{L}_P$ separated by its individual components in a i-tuple where $i = 1, 4, 5, 7, 8, 9, 10, \dots, n$. Each $F_{\mathcal{L}_P \ell_i}$ represents the formulas of $\mathcal{L}_P$ with length $i$.
+
+    + For example $(A_0 \to (\neg A_1))$ can be represented as $[ (, A_0, \to, (, \neg, A_1, ), ) ]$ where $[ (, A_0, \to, (, \neg, A_1, ), ) ] \in F_{\mathcal{L}_P \ell_8}$ 
+
+        + $F_{\mathcal{L}_P} = \bigcup_{i = 1}^n F_{\mathcal{L}_P \ell_i}$
+    
+            + $F_{\mathcal{L}_P}$ is countable because $F_{\mathcal{L}_P} \subset S_{\mathcal{L}_P}$
+        
+- Therefore the set of formulas of $\mathcal{L}_P$ is countable
+
+## Informal Conventions I
+
+We will use the symbols $\land$,  $\lor$,  and $\leftrightarrow$ \index to represent _and_,  _or_ and _if and only if_. Since they are not among the symbols of $\mathcal{L}_P$,  we will use them as abbreviations for certain constructions involving only $\lnot$ and $\to$:
+
+- $(\alpha \land \beta)$ is short for $(\neg (\alpha \to (\neg \beta)))$ 
+- $(\alpha \lor \beta)$ is short for $((\neg \alpha) \to \beta)$
+- $(\alpha \leftrightarrow \beta)$ is short for $((\alpha \to \beta) \land (\beta \to \alpha))$
+
+## Problems 8-9 and solutions
+
+__Problem 8__ _Take a couple of english sentences with several connectives and translate them into formulas of $\mathcal{L}_P$.  You may use $\land$,  $\lor$,  and $\leftrightarrow$ if appropriate._
+
+- I will go to Peru or Argentina only if I am on vacations
+
+    + $A_0$: I will go to Peru
+    
+    + $A_1$: I will go to Argentina
+    
+    + $A_2$: I am on vacations
+    
+        + $((A_0 \lor A_1) \leftrightarrow A_2)$
+        
+- If neither I nor you can do it then anyone can't do it
+
+    + $A_0$: I can do it
+    
+    + $A_1$: You can do it
+    
+    + $A_3$: Anyone can do it
+    
+        + $((\neg (A_0 \lor A_1)) \to (\neg A_3))$
+        
+__Problem 9__ _Write out $((\alpha \lor \beta) \land (\beta \to \alpha))$ using only $\neg$ and $\to$._
+
+- $(\neg (((\neg \alpha) \to \beta) \to (\lnot (\beta \to \alpha))))$
+
+## Informal Conventions II
+
+For the sake of readability, we will occasionally use some informal conventions that let us get away with writing fewer parentheses:
+
+- We will usually drop the outermost parentheses in a formula
+
+    + $\alpha \to \beta$ instead of $(\alpha \to \beta)$
+    
+- We will let $\neg$ take precedence over $\to$ when parentheses are missing
+
+    + $\neg \alpha \to \beta$ instead of $((\neg \alpha) \to \beta)$
+    
+        + Also fit the informal connectives into this scheme by letting the order of precedence be $\neg, \land, \lor, \to$ and $\leftrightarrow$
+        
+- We will group repetitions of $\to, \lor, \land, \leftrightarrow$ to the right when parentheses are missing
+
+    + $\alpha \to \beta \to \gamma$ instead of $(\alpha \to (\beta \to \gamma))$
+    
+## Problems 10-11 and solutions
+
+__Problem 10__ Write out $\neg (\alpha \leftrightarrow \neg \delta ) \land \beta \to \neg \alpha \to \gamma$ first with the missing parentheses included and then as an official formula of $\mathcal{L}_P$.
+
+- With parentheses
+
+    + $(((\neg (\alpha \leftrightarrow (\neg \delta))) \land \beta) \to ((\neg \alpha) \to \gamma))$
+    
+- Using only $\mathcal{L}_P$ symbols
+
+    + $((\neg ((\neg (\neg ((\alpha \to (\neg \delta)) \to (\neg ((\neg \delta) \to \alpha))))) \to (\neg \beta))) \to ((\neg \alpha) \to \gamma))$
+
+__Definition__ Suppose $\varphi$ is a formula of $\mathcal{L}_P$.  The set of _subformulas_ of $\varphi$,  $\mathcal{S}(\varphi)$,  is defined as follows:
+
+- If $\varphi$ is an atomic formula,  then $\mathcal{S}(\varphi) = \{ \varphi \}$
+
+- If $\varphi$ is $(\neg \alpha)$,  then $\mathcal{S}(\varphi) = \mathcal{S}(\alpha) \cup \{ (\neg \alpha) \}$.
+
+- If $\varphi$ is $(\alpha \to \beta)$,  then $\mathcal{S}(\varphi) = \mathcal{S}(\alpha) \cup \mathcal{S}(\beta) \cup \{ (\alpha \to \beta) \}$
+
+For example
+
+- $A_4 \to A_1 \lor A_4$
+
+    + This is equivalent to $(A_4 \to (A_1 \lor A_4))$
+    
+        + This is equivalent to $(A_4 \to ((\neg A_1) \to A_4))$
+        
+            + $\mathcal{S}((A_4 \to ((\neg A_1) \to A_4))) = \mathcal{S}(A_4) \cup \mathcal{S}(((\neg A_1) \to A_4)) \cup \{ (A_4 \to ((\neg A_1) \to A_4)) \}$
+            
+                + $\mathcal{S}(((\neg A_1) \to A_4)) = \mathcal{S}((\neg A_1)) \cup \mathcal{S}(A_4) \cup \{ ((\neg A_1) \to A_4) \}$
+                
+                    + $\mathcal{S}((\neg A_1)) = \{ (\neg A_1) \}$
+
+__Problem 11__ _Find all the subformulas of each of the following formulas_
+
+- $(\neg ((\neg A_{56}) \to A_{56}))$
+
+    + $\mathcal{S}((\neg ((\neg A_{56}) \to A_{56}))) = \{ (\neg ((\neg A_{56}) \to A_{56})), ((\neg A_{56}) \to A_{56}), (\neg A_{56}), A_{56} \}$ 
+    
+- $A_9 \to A_8 \to \neg (A_{78} \to \neg \neg A_0)$
+
+    + $A_9 \to A_8 \to \neg (A_{78} \to \neg \neg A_0)$ is equivalent to $(A_9 \to (A_8 \to (\neg (A_{78} \to (\neg (\neg A_0))))))$
+    
+        + $\begin{split}
+           \mathcal{S}(A_9 \to A_8 \to \neg (A_{78} \to \neg \neg A_0)) =  
+           & \{ (A_9 \to (A_8 \to (\neg (A_{78} \to (\neg (\neg A_0)))))) \} \\ 
+           & \cup \{ (A_8 \to (\neg (A_{78} \to (\neg (\neg A_0))))) \} \\
+           & \cup \{ (\neg (A_{78} \to (\neg (\neg A_0)))) \} \\
+           & \cup \{ (A_{78} \to (\neg (\neg A_0))) \} \\ 
+           & \cup \{ (\neg (\neg A_0)) \} \\ 
+           & \cup \{ (\neg (\neg A_0)) \} \\ 
+           & \cup \{ (\neg A_0) \} \\ 
+           & \cup \{ A_{78}, A_9, A_8, A_0 \} \\
+           \end{split}$
+    
+- $\neg A_0 \land \neg A_1 \leftrightarrow \neg (A_0 \lor A_1)$
+
+    + $\neg A_0 \land \neg A_1 \leftrightarrow \neg (A_0 \lor A_1)$ is equivalent to $(((\neg A_0) \land (\neg A_1)) \leftrightarrow (\neg (A_0 \lor A_1)))$
+    
+        + $\begin{split}
+           \mathcal{S}(\neg A_0 \land \neg A_1 \leftrightarrow \neg (A_0 \lor A_1)) =
+           & \{ (((\neg A_0) \land (\neg A_1)) \leftrightarrow (\neg (A_0 \lor A_1))) \} \\
+           & \cup \{ ((\neg A_0) \land (\neg A_1) \} \\
+           & \cup \{ (\neg (A_0 \lor A_1))) \} \\
+           & \cup \{ (A_0 \lor A_1) \} \\
+           & \cup \{ (\neg A_0), (\neg A_1) \} \\
+           & \cup \{ A_1, A_0 \}
+           \end{split}$
+           
+## Unique readability
+
+The formulas of $\mathcal{L}_P$ can only be read in exactly one way if all the symbols of $\mathcal{L}_P$ are distinct and no symbol is a subsequence of any other symbol. With this additional assumption, one can prove the following:
+
+__Theorem__ If $\gamma$ is a formula of $\mathcal{L}_P$ it must satisfy exactly one of the following conditions:
+
+- $\gamma$ is an atomic formula and is unique
+- There is a unique formula $\alpha$ such that $\gamma = (\neg \alpha)$
+- There are unique formulas $\alpha$ and $\beta$ such that $\gamma = (\alpha \to \beta)$
+
+__Proof__
+
+- $\gamma$ must satisfy at least one of the conditions because $\gamma$ is a formula of $\mathcal{L}_P$
+    
+- $\gamma$ must satisfy exactly one condition because:
+    
+    + If $\gamma$ is an atomic formula then $\gamma$ doesn't contain parentheses so
+          $\gamma \neq (\neg \alpha)$ and $\gamma \neq (\alpha \to \beta)$
+          
+    + If $\gamma = (\neg \alpha)$ then assume that $\gamma = (\varphi \to \beta)$. Therefore
+        
+        + $\begin{split}
+           \gamma = (\neg \alpha) \land \gamma = (\varphi \to \alpha) & \iff \neg \alpha) = \varphi \to \beta) \\
+           & \implies \varphi \text{ begins with } \neg \\
+           & \implies \text{There is a contradiction because } \varphi \text{ is a formula}  
+              \end{split}$
+              
+        + Therefore it is not the case that $\gamma = (\neg \alpha) \land \gamma = (\varphi \to \alpha)$
+            
+    + If $\gamma$ satisfy exactly one of those conditions then:
+        
+        + If $\gamma$ is an atomic formula then it is unique because all the symbols of $\mathcal{L}_P$ are distinct
+            
+        + If $\gamma = (\neg \alpha)$ and $\gamma = (\neg \varphi)$ then:
+            
+            + $\begin{split}
+                   \gamma = (\neg \alpha) \land \gamma = (\neg \varphi) & \iff \neg \alpha) = \neg \varphi) \\
+                   & \iff \neg \alpha = \neg \varphi \\
+                   & \iff \alpha = \varphi
+                   \end{split}$
+                   
+        + If $\gamma = (\alpha \to \beta)$ and $\gamma = (\varphi \to \theta)$ we need to prove that if $\sigma$ and $\tau$ are formulas of $\mathcal{L}_p$ with $\sigma \neq \tau$ it is not the case that $\sigma$ begins with $\tau$, to show that $\alpha = \beta \land \varphi = \theta$ (See [@enderton_mathematical_2001, p 30, Lemma 13B] for details). Using this result we have that:
+        
+        
+            + $\begin{split}
+               \gamma = (\alpha \to \beta) \land \gamma = (\varphi \to \theta) & \iff \alpha \to \beta) = \varphi \to \theta) \\
+               & \iff \alpha \to \beta = \varphi \to \theta \\
+               & \iff \alpha = \varphi \; \land \; \to \beta = \to \theta \\
+               & \iff \alpha = \varphi \; \land \; \beta = \theta
+                   \end{split}$
+        
+To understand the importance of __unique readability__ check out [@zach_sets_2019, Chapter 5, Section 5.4] 
+
+# Bibliography
