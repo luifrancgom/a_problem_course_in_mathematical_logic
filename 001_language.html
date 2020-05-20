@@ -1818,7 +1818,7 @@ text-align: justify}
 <div id="language" class="section level1">
 <h1><span class="header-section-number">1</span> Language</h1>
 <p>This section is based on <span class="citation">(Bilaniuk <a href="#ref-bilaniuk_problem_2009" role="doc-biblioref">2009</a>, Chapter 1)</span></p>
-<p>The primary objective of propositional logic, <span class="math inline">\(\mathcal{L}_P\)</span>,is to formalize the reasoning that can be done using connectives like <em>not</em>, <em>and</em>, <em>or</em> and <em>if … then</em></p>
+<p>The primary objective of propositional logic, <span class="math inline">\(\mathcal{L}_P\)</span>, is to formalize the reasoning that can be done using connectives like <em>not</em>, <em>and</em>, <em>or</em> and <em>if … then</em></p>
 <p><strong>Definition</strong> The symbols of <span class="math inline">\(\mathcal{L}_P\)</span> are</p>
 <ul>
 <li>Parentheses: <span class="math inline">\((\)</span> and <span class="math inline">\()\)</span></li>
@@ -1872,9 +1872,10 @@ text-align: justify}
 </ul></li>
 <li><p><span class="math inline">\((((\lnot A_1) \to (A_\ell \to A_7) \to A_7)\)</span></p>
 <ul>
-<li><p>One <span class="math inline">\()\)</span> is missing</p>
+<li><p>One <span class="math inline">\()\)</span> is missing or <span class="math inline">\((\)</span> and <span class="math inline">\()\)</span> are missing</p>
 <ul>
-<li><span class="math inline">\((((\lnot A_1) \to (A_\ell \to A_7) \color{red}{)} \to A_7)\)</span></li>
+<li><p><span class="math inline">\((((\lnot A_1) \to (A_\ell \to A_7) \color{red}{)} \to A_7)\)</span></p></li>
+<li><p><span class="math inline">\((((\lnot A_1) \to \color{red}{(} (A_\ell \to A_7) \to A_7) \color{red}{)}\)</span></p></li>
 </ul></li>
 <li><p><span class="math inline">\(A_{\color{red}{\ell}}\)</span> is not an atomic formula</p></li>
 </ul></li>
@@ -1885,7 +1886,7 @@ text-align: justify}
 <ul>
 <li><p><em>Base step</em> <span class="math inline">\((n = 0)\)</span>: If <span class="math inline">\(\gamma\)</span> is a formula with 0 connectives it must be an atomic formula. Therefore <span class="math inline">\(\gamma\)</span> has the same number of <span class="math inline">\((\)</span> and <span class="math inline">\()\)</span>.</p></li>
 <li><p><em>Induction hypothesis</em> <span class="math inline">\((n \leq k)\)</span>: If <span class="math inline">\(\gamma\)</span> is a formula with <span class="math inline">\(n \leq k\)</span> connectives then it has the same number of <span class="math inline">\((\)</span> and <span class="math inline">\()\)</span>.</p></li>
-<li><p><em>Induction hypothesis</em> <span class="math inline">\((n = k + 1)\)</span>: If <span class="math inline">\(\gamma\)</span> is a formula with <span class="math inline">\(n = k + 1\)</span> connectives then we have two possibilities:</p>
+<li><p><em>Induction step</em> <span class="math inline">\((n = k + 1)\)</span>: If <span class="math inline">\(\gamma\)</span> is a formula with <span class="math inline">\(n = k + 1\)</span> connectives then we have two possibilities:</p>
 <ul>
 <li><p><span class="math inline">\(\gamma = (\neg \alpha)\)</span> where <span class="math inline">\(\alpha\)</span> has <span class="math inline">\(n = k\)</span> connectives</p></li>
 <li><p><span class="math inline">\(\gamma = (\alpha \to \beta)\)</span> where <span class="math inline">\(\alpha\)</span> and <span class="math inline">\(\beta\)</span> have <span class="math inline">\(n \leq k\)</span> connectives</p>
@@ -1901,7 +1902,7 @@ text-align: justify}
 <li><p>The minimum values of <span class="math inline">\(p(\alpha)\)</span> and <span class="math inline">\(\ell(\alpha)\)</span> are 0 and 1 which is the case when <span class="math inline">\(\alpha\)</span> is an atomic formula. Therefore the minimum value of <span class="math inline">\(p(\alpha) / \ell(\alpha)\)</span> is 0</p></li>
 <li><p>To find the maximum value of <span class="math inline">\(p(\alpha) / \ell(\alpha)\)</span> it is important to point out that:</p>
 <ul>
-<li><p><span class="math inline">\(\ell(\alpha) = p(\alpha) + c(\alpha) + s(\alpha)\)</span> where <span class="math inline">\(c(\alpha)\)</span> and <span class="math inline">\(a(\alpha)\)</span> are the number of connectives and atomic formulas in <span class="math inline">\(\alpha\)</span></p></li>
+<li><p><span class="math inline">\(\ell(\alpha) = p(\alpha) + c(\alpha) + a(\alpha)\)</span> where <span class="math inline">\(c(\alpha)\)</span> and <span class="math inline">\(a(\alpha)\)</span> are the number of connectives and atomic formulas in <span class="math inline">\(\alpha\)</span></p></li>
 <li><p><span class="math inline">\(p(\alpha) = 2c(\alpha)\)</span></p></li>
 <li><p>To maximize <span class="math inline">\(p(\alpha) / \ell(\alpha)\)</span> we need to minimize <span class="math inline">\(\ell(\alpha)\)</span> by choosing the minimum value of <span class="math inline">\(a(\alpha)\)</span></p>
 <ul>
@@ -1934,7 +1935,7 @@ text-align: justify}
 <ul>
 <li><p><em>Base step</em> <span class="math inline">\((n = 1)\)</span>: If <span class="math inline">\(\gamma\)</span> is a formula with 0 connectives it must be an atomic formula. Therefore <span class="math inline">\(\gamma\)</span> has 0 occurences of <span class="math inline">\(\to\)</span> and 1 occurence of an atomic formula.</p></li>
 <li><p><em>Induction hypothesis</em> <span class="math inline">\((n \leq k)\)</span>: If <span class="math inline">\(\gamma\)</span> is a formula with <span class="math inline">\(n \leq k\)</span> connectives then <span class="math inline">\(a(\gamma) = c_{\to}(\gamma) + 1\)</span></p></li>
-<li><p><em>Induction hypothesis</em> <span class="math inline">\((n = k + 1)\)</span>: If <span class="math inline">\(\gamma\)</span> is a formula with <span class="math inline">\(n = k + 1\)</span> connectives then we have two possibilities:</p>
+<li><p><em>Induction step</em> <span class="math inline">\((n = k + 1)\)</span>: If <span class="math inline">\(\gamma\)</span> is a formula with <span class="math inline">\(n = k + 1\)</span> connectives then we have two possibilities:</p>
 <ul>
 <li><p><span class="math inline">\(\gamma = (\neg \alpha)\)</span> where <span class="math inline">\(\alpha\)</span> is a formula with <span class="math inline">\(n = k\)</span> connectives</p></li>
 <li><p><span class="math inline">\(\gamma = (\alpha \to \beta)\)</span> where <span class="math inline">\(\alpha\)</span> and <span class="math inline">\(\beta\)</span> have <span class="math inline">\(n \leq k\)</span> connectives</p>
@@ -2018,7 +2019,7 @@ text-align: justify}
 </ul></li>
 </ul></li>
 </ul></li>
-<li><p><span class="math inline">\(F_{\mathcal{L}_P \ell_i}\)</span> the formulas of <span class="math inline">\(\mathcal{L}_P\)</span> separated by its individual components in a i-tuple where <span class="math inline">\(i = 1, 4, 5, 7, 8, 9, 10, \dots, n\)</span>. Each <span class="math inline">\(F_{\mathcal{L}_P \ell_i}\)</span> represents the formulas of <span class="math inline">\(\mathcal{L}_P\)</span> with length <span class="math inline">\(i\)</span>.</p>
+<li><p><span class="math inline">\(F_{\mathcal{L}_P \ell_i}\)</span> the formulas of <span class="math inline">\(\mathcal{L}_P\)</span> separated by its individual components in a <em>i-tuple</em> where <span class="math inline">\(i = 1, 4, 5, 7, 8, 9, 10, \dots, n\)</span>. Each <span class="math inline">\(F_{\mathcal{L}_P \ell_i}\)</span> represents the formulas of <span class="math inline">\(\mathcal{L}_P\)</span> with length <span class="math inline">\(i\)</span>.</p>
 <ul>
 <li><p>For example <span class="math inline">\((A_0 \to (\neg A_1))\)</span> can be represented as <span class="math inline">\([ (, A_0, \to, (, \neg, A_1, ), ) ]\)</span> where <span class="math inline">\([ (, A_0, \to, (, \neg, A_1, ), ) ] \in F_{\mathcal{L}_P \ell_8}\)</span></p>
 <ul>
@@ -2176,7 +2177,7 @@ text-align: justify}
 <ul>
 <li><span class="math inline">\(\begin{split}  \gamma = (\neg \alpha) \land \gamma = (\neg \varphi) &amp; \iff \neg \alpha) = \neg \varphi) \\  &amp; \iff \neg \alpha = \neg \varphi \\  &amp; \iff \alpha = \varphi  \end{split}\)</span></li>
 </ul></li>
-<li><p>If <span class="math inline">\(\gamma = (\alpha \to \beta)\)</span> and <span class="math inline">\(\gamma = (\varphi \to \theta)\)</span> we need to prove that if <span class="math inline">\(\sigma\)</span> and <span class="math inline">\(\tau\)</span> are formulas of <span class="math inline">\(\mathcal{L}_p\)</span> with <span class="math inline">\(\sigma \neq \tau\)</span> it is not the case that <span class="math inline">\(\sigma\)</span> begins with <span class="math inline">\(\tau\)</span>, to show that <span class="math inline">\(\alpha = \beta \land \varphi = \theta\)</span> (See <span class="citation">(Enderton <a href="#ref-enderton_mathematical_2001" role="doc-biblioref">2001</a>, p 30, Lemma 13B)</span> for details). Using this result we have that:</p>
+<li><p>If <span class="math inline">\(\gamma = (\alpha \to \beta)\)</span> and <span class="math inline">\(\gamma = (\varphi \to \theta)\)</span> we need to prove that if <span class="math inline">\(\sigma\)</span> and <span class="math inline">\(\tau\)</span> are formulas of <span class="math inline">\(\mathcal{L}_p\)</span> with <span class="math inline">\(\sigma \neq \tau\)</span> it is not the case that <span class="math inline">\(\sigma\)</span> begins with <span class="math inline">\(\tau\)</span>, to show that <span class="math inline">\(\alpha = \beta \land \varphi = \theta\)</span> [See <span class="citation">(Enderton <a href="#ref-enderton_mathematical_2001" role="doc-biblioref">2001</a>, p 30, Lemma 13B)</span> for details]. Using this result we have that:</p>
 <ul>
 <li><span class="math inline">\(\begin{split}  \gamma = (\alpha \to \beta) \land \gamma = (\varphi \to \theta) &amp; \iff \alpha \to \beta) = \varphi \to \theta) \\  &amp; \iff \alpha \to \beta = \varphi \to \theta \\  &amp; \iff \alpha = \varphi \; \land \; \to \beta = \to \theta \\  &amp; \iff \alpha = \varphi \; \land \; \beta = \theta  \end{split}\)</span></li>
 </ul></li>
