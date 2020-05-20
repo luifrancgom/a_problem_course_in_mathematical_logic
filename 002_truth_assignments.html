@@ -1694,8 +1694,10 @@ summary {
 
 <div id="TOC">
 <ul>
-<li><a href="#truth-assignments"><span class="toc-section-number">1</span> Truth Assignments</a></li>
-<li><a href="#bibliography"><span class="toc-section-number">2</span> Bibliography</a></li>
+<li><a href="#truth-assignments"><span class="toc-section-number">1</span> Truth Assignments</a><ul>
+<li><a href="#problems-1-4-and-solutions"><span class="toc-section-number">1.1</span> Problems 1-4 and solutions</a></li>
+</ul></li>
+<li><a href="#bibliography">Bibliography</a></li>
 </ul>
 </div>
 
@@ -1707,9 +1709,60 @@ text-align: justify}
 </style>
 <div id="truth-assignments" class="section level1">
 <h1><span class="header-section-number">1</span> Truth Assignments</h1>
+<p>This section is based on <span class="citation">(Bilaniuk <a href="#ref-bilaniuk_problem_2009" role="doc-biblioref">2009</a>, Chapter 2)</span></p>
+<p>A formula <span class="math inline">\(\varphi\)</span> of <span class="math inline">\(\mathcal{L}_P\)</span> is true or false depending on how we interpret the atomic formulas which appear in <span class="math inline">\(\varphi\)</span>.</p>
+<ul>
+<li>Since we don’t want to commit ourselves to a single interpretation we will define how any assignment of <em>truth values</em> <span class="math inline">\(T\)</span> (“true”) and <span class="math inline">\(F\)</span> (“false”) to atomic formulas of <span class="math inline">\(\mathcal{L}_P\)</span> can be extended to all other formulas.</li>
+</ul>
+<p>We will also get a reasonable definition of what it means for a formula of <span class="math inline">\(\mathcal{L}_P\)</span> to follow logically from other formulas.</p>
+<p><strong>Definition</strong> A <em>truth assignment</em> is a function <span class="math inline">\(v\)</span> whose domain is the set of all formulas of <span class="math inline">\(\mathcal{L}_P\)</span> and whose range is the set <span class="math inline">\(\{ T, F \}\)</span> of truth values, such that:</p>
+<ul>
+<li><p><span class="math inline">\(v(A_n)\)</span> is defined for every atomic formula <span class="math inline">\(A_n\)</span></p></li>
+<li><p>For any formula <span class="math inline">\(\alpha\)</span></p>
+<ul>
+<li><span class="math inline">\(v((\neg \alpha)) = \begin{cases}  T &amp; \text{if } v(\alpha) = F \\  F &amp; \text{if } v(\alpha) = T  \end{cases}\)</span></li>
+</ul></li>
+<li><p>For any formulas <span class="math inline">\(\alpha\)</span> and <span class="math inline">\(\beta\)</span></p>
+<ul>
+<li><span class="math inline">\(v((\alpha \to \beta)) = \begin{cases}  F &amp; \text{if } v(\alpha) = T \text{ and } v(\beta) = F \\  T &amp; \text{Otherwise}  \end{cases}\)</span></li>
+</ul></li>
+</ul>
+<p>Note that we have not defined how to handle any truth values besides <span class="math inline">\(T\)</span> and <span class="math inline">\(F\)</span> in <span class="math inline">\(\mathcal{L}_P\)</span>. According to <span class="citation">(Bilaniuk <a href="#ref-bilaniuk_problem_2009" role="doc-biblioref">2009</a>, Chapter 2)</span> logics with other truth values have uses, but are not relevant in most of mathematics.</p>
+<p>A convenient way to write out the determination of the truth value of a formula on a given truth assignment is to use a <em>truth table</em>:</p>
+<ul>
+<li><p>List all the subformulas of the given formula across the top in order of length</p></li>
+<li><p>Fill in their truth values on the bottom from left to right</p>
+<ul>
+<li><p>Except for the atomic formulas at the extreme left, the truth value of each subformula will depend on the truth values of the subformulas to its left</p>
+<ul>
+<li>For example if <span class="math inline">\(v(A_0) = T\)</span> and <span class="math inline">\(v(A_1) = F\)</span> then to know the truth assignment of <span class="math inline">\(v(((\neg A_1) \to (A_0 \to A_1)))\)</span> we can use the following truth table:</li>
+</ul></li>
+</ul></li>
+</ul>
+<p><span class="math display">\[\begin{array}{|c|c|c|c|c|}
+   A_0 &amp; A_1 &amp; (\neg A_1) &amp; (A_0 \to A_1) &amp; ((\neg A_1) \to (A_0 \to A_1)) \\
+   \hline
+   T   &amp; F   &amp; T          &amp; F             &amp; F
+   \end{array}\]</span></p>
+<div id="problems-1-4-and-solutions" class="section level2">
+<h2><span class="header-section-number">1.1</span> Problems 1-4 and solutions</h2>
+<p><strong>Problem 1</strong> Suppose <span class="math inline">\(v\)</span> is a truth assignment such that <span class="math inline">\(v(A_0) = v(A_2) = T\)</span> and <span class="math inline">\(v(A_1) = v(A_3) = F\)</span>. Find <span class="math inline">\(v(\alpha)\)</span> if <span class="math inline">\(\alpha\)</span> is:</p>
+<ul>
+<li><p><span class="math inline">\(\neg A_2 \to \neg A_3\)</span></p></li>
+<li><p><span class="math inline">\(\neg A_2 \to A_3\)</span></p></li>
+<li><p><span class="math inline">\(\lnot ( \neg A_0 \to A_1)\)</span></p></li>
+<li><p><span class="math inline">\(A_0 \lor A_1\)</span></p></li>
+<li><p><span class="math inline">\(A_0 \land A_1\)</span></p></li>
+</ul>
 </div>
-<div id="bibliography" class="section level1">
-<h1><span class="header-section-number">2</span> Bibliography</h1>
+</div>
+<div id="bibliography" class="section level1 unnumbered">
+<h1>Bibliography</h1>
+<div id="refs" class="references">
+<div id="ref-bilaniuk_problem_2009">
+<p>Bilaniuk, Stefan. 2009. <em>A Problem Course in Mathematical Logic</em>. <a href="http://euclid.trentu.ca/math/sb/pcml/">http://euclid.trentu.ca/math/sb/pcml/</a>.</p>
+</div>
+</div>
 </div>
 
 

@@ -35,6 +35,64 @@ knitr::opts_chunk$set(echo      = TRUE,
 
 # Truth Assignments
 
+This section is based on [@bilaniuk_problem_2009, Chapter 2]
+
+A formula $\varphi$ of $\mathcal{L}_P$ is true or false depending on how we interpret the atomic formulas which appear in $\varphi$.
+
+- Since we don't want to commit ourselves to a single interpretation we will define how any assignment of _truth values_ $T$ ("true") and $F$ ("false") to atomic formulas of $\mathcal{L}_P$ can be extended to all other formulas.
+
+We will also get a reasonable definition of what it means for a formula of $\mathcal{L}_P$ to follow logically from other formulas. 
+
+__Definition__ A _truth assignment_ is a function $v$ whose domain is the set of all formulas of $\mathcal{L}_P$ and whose range is the set $\{ T, F \}$ of truth values,  such that:
+
+- $v(A_n)$ is defined for every atomic formula $A_n$
+
+- For any formula $\alpha$
+
+    + $v((\neg \alpha)) = \begin{cases}
+                           T & \text{if } v(\alpha) = F \\
+                           F & \text{if } v(\alpha) = T
+                           \end{cases}$
+
+- For any formulas $\alpha$ and $\beta$
+
+    + $v((\alpha \to \beta)) = \begin{cases}
+                                F & \text{if } v(\alpha) = T \text{ and } v(\beta) = F \\
+                                T & \text{Otherwise}
+                                \end{cases}$
+                                
+Note that we have not defined how to handle any truth values besides $T$ and $F$ in $\mathcal{L}_P$. According to [@bilaniuk_problem_2009, Chapter 2] logics with other truth values have uses,  but are not relevant in most of mathematics.
+
+
+A convenient way to write out the determination of the truth value of a formula on a given truth assignment is to use a _truth table_: 
+
+- List all the subformulas of the given formula across the top in order of length
+
+- Fill in their truth values on the bottom from left to right
+
+    + Except for the atomic formulas at the extreme left,  the truth value of each subformula will depend on the truth values of the subformulas to its left
+    
+        + For example if $v(A_0) = T$ and $v(A_1) = F$ then to know the truth assignment of $v(((\neg A_1) \to (A_0 \to A_1)))$ we can use the following truth table:
+        
+$$\begin{array}{|c|c|c|c|c|}
+   A_0 & A_1 & (\neg A_1) & (A_0 \to A_1) & ((\neg A_1) \to (A_0 \to A_1)) \\
+   \hline
+   T   & F   & T          & F             & F
+   \end{array}$$
+
+## Problems 1-4 and solutions
+
+__Problem 1__ Suppose $v$ is a truth assignment such that $v(A_0) = v(A_2) = T$ and $v(A_1) = v(A_3) = F$.  Find $v(\alpha)$ if $\alpha$ is:
+
+- $\neg A_2 \to \neg A_3$
+
+- $\neg A_2 \to A_3$
+
+- $\lnot ( \neg A_0 \to A_1)$
+
+- $A_0 \lor A_1$
+
+- $A_0 \land A_1$
 
 # Bibliography
 
