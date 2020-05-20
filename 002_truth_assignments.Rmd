@@ -1,0 +1,40 @@
+---
+title: "Truth Assignments"
+date: 2020-05-19 20:29:29
+output:
+  html_document:
+    code_folding: hide
+    df_print: paged
+    highlight: tango
+    number_sections: yes
+    theme: flatly
+    toc: yes
+    toc_depth: 2
+bibliography: a_problem_course_in_mathematical_logic.bib
+link-citations: yes
+---
+
+<style>
+
+body {
+text-align: justify}
+
+</style>
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo      = TRUE, 
+                      warning   = FALSE, 
+                      message   = FALSE,
+                      fig.align = "center")
+```
+
+```{r libraries}
+
+
+```
+
+# Truth Assignments
+
+
+# Bibliography
+
