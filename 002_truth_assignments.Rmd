@@ -80,19 +80,213 @@ $$\begin{array}{|c|c|c|c|c|}
    T   & F   & T          & F             & F
    \end{array}$$
 
-## Problems 1-4 and solutions
+## Problems 1-10 and solutions
 
 __Problem 1__ Suppose $v$ is a truth assignment such that $v(A_0) = v(A_2) = T$ and $v(A_1) = v(A_3) = F$.  Find $v(\alpha)$ if $\alpha$ is:
 
 - $\neg A_2 \to \neg A_3$
 
+$$\begin{array}{|c|c|c|c|c|}
+   A_2 & A_3 & (\neg A_2) & (\neg A_3) & ((\neg A_2) \to (\neg A_3)) \\
+   \hline
+   T   & F   & F          & T          & T
+   \end{array}$$
+
 - $\neg A_2 \to A_3$
 
-- $\lnot ( \neg A_0 \to A_1)$
+$$\begin{array}{|c|c|c|c}
+   A_2 & A_3 & (\neg A_2) & ((\neg A_2) \to A_3) \\
+   \hline
+   T   & F   & F          & T
+   \end{array}$$
+
+- $\neg ( \neg A_0 \to A_1)$
+
+$$\begin{array}{|c|c|c|c|c|}
+   A_0 & A_1 & (\neg A_0) & ((\neg A_0) \to A_1) & (\neg ( (\neg A_0) \to A_1)) \\
+   \hline
+   T   & F   & F          & T                    & F
+   \end{array}$$
 
 - $A_0 \lor A_1$
 
+$$\begin{array}{|c|c|c|c|c|}
+   A_0 & A_1 & (\neg A_0) & ((\neg A_0) \to A_1) & (A_0 \lor A_1) \\
+   \hline
+   T   & F   & F          & T                    & T
+   \end{array}$$
+
 - $A_0 \land A_1$
+
+$$\begin{array}{|c|c|c|c|c|}
+   A_0 & A_1 & (\neg A_1) & (A_0 \to (\neg A_1)) & (\neg ( A_0 \to (\neg A_1))) & (A_0 \land A_1) \\
+   \hline
+   T   & F   & T          & T                    & F                            & F
+   \end{array}$$
+
+The following solution of the problem asserts that only the truth values of the atomic sentences in the formula matter.
+
+__Problem 2__ _Suppose $\delta$ is any formula and $u$ and $v$ are truth assignments such that $u(A_n) = v(A_n)$ for all atomic formulas $A_n$ which occur in $\delta$.  Then $u(\delta) = v(\delta)$._
+
+- Proof by strong induction where $n$ is the number of connectives in a formula of $\mathcal{L}_P$
+
+    + _Base step_ $(n = 0)$: If $\delta$ is a formula with 0 connectives it must be an atomic formula. Therefore $u(\delta) = v(\delta)$
+    
+    + _Induction hypothesis_ $(n \leq k)$: If $\delta$ is a formula with $n \leq k$ connectives then if $u$ and $v$ are truth assignments such that $u(A_n) = v(A_n)$ for all atomic formulas $A_n$ which occur in $\delta$ we have that $u(\delta) = v(\delta)$
+    
+    + _Induction step_ $(n = k + 1)$: If $\delta$ is a formula with $n = k + 1$ connectives then we have two possibilities:
+    
+        + $\delta = (\neg \alpha)$ where $\alpha$ has $n = k$ connectives
+        
+        + $\delta = (\alpha \to \beta)$ where $\alpha$ and $\beta$ have $n \leq k$ connectives
+        
+            + If $\delta = (\neg \alpha)$ then by the _induction hypothesis_ $u(\alpha) = v(\alpha)$. Therefore $u((\neg \alpha)) = v((\neg \alpha))$ so $u(\delta) = v(\delta)$
+            
+            + If $\gamma = (\alpha \to \beta)$ then by the _induction hypothesis_ $u(\alpha) = v(\alpha)$ and $u(\beta) = v(\beta)$. Therefore $u((\alpha \to \beta)) = v((\alpha \to \beta))$ so $u(\delta) = v(\delta)$
+            
+__Problem 3__ Suppose $u$ and $v$ are truth assignments such that $u(A_n) = v(A_n)$ for every atomic formula $A_n$.  Then $u = v$.
+
+- $u$ and $v$ are functions therefore to prove that $u = v$ we have to check that [See [@mendelson_number_2008, Chapter 1, Section 1.18, Exercise 3]]:
+
+    + $u$ and $v$ have the same domain
+    
+    + For any $x$ in the domain, $u(x) = v(x)$
+
+      + The domain of $u$ and $v$ are the same and corresponds to all the formulas of $\mathcal{L}_P$
+
+      + In __Problem 2__ we prove that if $u(A_n) = v(A_n)$ for all atomic formulas $A_n$ which occur in $\delta$ then $u(\delta) = v(\delta)$. Therefore for any $\delta$ that is a formula, $u(\delta) = v(\delta)$
+      
+- Taking into account the above results we have that $u = v$
+
+__Problem 4__ _If $\alpha$ and $\beta$ are formulas and $v$ is a truth assignment,  then:_
+
+- $v(\neg \alpha) = T$ if and only if $v(\alpha) = F$
+
+    + If $v(\neg \alpha) = T$ by definition $v(\alpha) = F$
+    
+    + If $v(\alpha) = F$ assume that $v(\neg \alpha) = F$
+    
+        + If $v(\neg \alpha) = F$ by definition $v(\alpha) = T$. But $v(\alpha) = F$ and $v(\alpha) = T$ which is a contradiction because $v$ is a truth assigment. Therefore $v(\neg \alpha) = T$     
+
+- $v(\alpha \to \beta) = T$ if and only if $v(\beta) = T$ whenever $v(\alpha) = T$
+
+    + If $v(\alpha \to \beta) = T$ and $v(\alpha) = T$ by definition $v(\beta) = T$
+    
+    + If $v(\beta) = T$ and $v(\alpha) = T$ assume $v(\alpha \to \beta) = F$
+    
+        + If $v(\alpha \to \beta) = F$ then $v(\alpha) = T$ and $v(\beta) = F$. But $v(\beta) = T$ and $v(\beta) = F$ which is a contradiction because $v$ is a truth assigment. Therefore $v(\alpha \to \beta) = T$    
+
+
+- $v(\alpha \land \beta) = T$ if and only if $v(\alpha) = T$ and $v(\beta) = T$
+
+    + $\begin{split}
+       v(\alpha \land \beta) = T & \iff v((\neg (\alpha \to (\neg \beta)))) = T \\
+       & \iff v((\alpha \to (\neg \beta))) = F \\
+       & \implies v(\alpha) = T \text{ and } v((\neg \beta)) = F \\
+       & \iff v(\alpha) = T \text{ and } v(\beta) = T
+       \end{split}$
+       
+    + If $v(\alpha) = T$ and $v(\beta) = T$ assume that $v(\alpha \land \beta) = F$.
+    
+        + If $v(\alpha \land \beta) = F$ then $v((\neg (\alpha \to (\neg \beta)))) = F$ so $v((\alpha \to (\neg \beta))) = T$. Hence $v(\alpha) = F$ or $v((\neg \beta)) = T$ which means that $v(\alpha) = F$ or $v(\beta) = F$. But we have also that $v(\alpha) = T$ and $v(\beta) = T$ which is a contradiction because $v$ is a truth assigment. Therefore $v(\alpha \land \beta) = T$      
+
+- $v(\alpha \lor \beta) = T$ if and only if $v(\alpha) = T$ or $v(\beta) = T$
+
+    + $\begin{split}
+       v(\alpha \lor \beta) = T & \iff v(((\neg \alpha) \to \beta)) = T \\
+       & \implies v((\neg \alpha)) = F \text{ or } v(\beta) = T \\
+       & \iff v(\alpha) = T \text{ or } v(\beta) = T \\
+       \end{split}$
+
+    + If $v(\alpha) = T$ or $v(\beta) = T$ assume that $v(\alpha \lor \beta) = F$.
+    
+        + If $v(\alpha \lor \beta) = F$ then $v(((\neg \alpha) \to \beta)) = F$ so $v((\neg \alpha)) = T$ and $v(\beta) = F$. Hence $v(\alpha) = F$ and $v(\beta) = F$. But we have also that $v(\alpha) = T$ or $v(\beta) = T$ which is a contradiction because $v$ is a truth assigment.  Therefore $v(\alpha \lor \beta) = T$   
+
+- $v(\alpha \leftrightarrow \beta) = T$ if and only if $v(\alpha) = v(\beta)$
+
+    + $\begin{split}
+       v(\alpha \leftrightarrow \beta) = T & \iff v(((\alpha \to \beta) \land (\beta \to \alpha))) = T \\
+       & \iff v((\alpha \to \beta)) = T \text{ and } v((\beta \to \alpha)) = T \\
+       & \implies v(\alpha) = F \text{ or } v(\beta) = T \text{ and } v(\beta) = F \text{ or } v(\alpha) = T \\
+       & \iff v(\alpha) = F \text{ and } v(\beta) = F  \text{ or } v(\alpha) = T \text{ and } v(\beta) = T \\
+       & \iff v(\alpha) = v(\beta)
+       \end{split}$
+       
+    + If $v(\alpha) = v(\beta)$ assume $v(\alpha \leftrightarrow \beta) = F$
+    
+        + $\begin{split}
+           v(\alpha \leftrightarrow \beta) = F & \iff v(((\alpha \to \beta) \land (\beta \to \alpha))) = F \\
+           & \iff v((\alpha \to \beta)) = F \text{ or } v((\beta \to \alpha)) = F \\
+           & \implies v(\alpha) = T \text{ and } v(\beta) = F \text{ or } v(\beta) = T \text{ and } v(\alpha) = F \\
+           & \iff v(\alpha) \neq v(\beta) \\
+           & \implies \text{There is a contradiction because } v(\alpha) = v(\beta) 
+           \end{split}$
+           
+        + Therefore $v(\alpha \leftrightarrow \beta) = T$
+        
+__Definition__ If $v$ is a truth assignment and $\varphi$ is a formula, we will often say that $v$ _satisfies_ $\varphi$ if $v(\varphi) = T$.  Similarly, if $\Sigma$ is a set of formulas, we will often say that $v$ satisfies $\Sigma$ if $v(\sigma) = T$ for every $\sigma \in \Sigma$. We will say that $\varphi$ (respectively,  $\Sigma$) is _satisfiable_ if there is some truth assignment which satisfies it.
+
+- $v \text{ satisfies } \varphi \iff v(\varphi) = T$
+
+- $v \text{ satisfies } \Sigma \iff (\text{for all } \sigma)(\sigma \in \Sigma \implies v(\sigma) = T)$
+
+__Definition__ A formula $\varphi$ is a _tautology_ if it is satisfied by every truth assignment.  A formula $\psi$ is a _contradiction_ if there is no truth assignment which satisfies it.
+
+- $\varphi \text{ is a tautology} \iff (\text{for all } v)(v \text{ is a truth assigment} \implies v(\varphi) = T)$
+
+- $\psi \text{ is a contradiction} \iff (\text{for all } v)(v \text{ is a truth assigment} \implies v(\psi) = F)$
+
+__Problem 5__ _Prove that if $\alpha$ is any formula,  then $((\neg \alpha) \lor \alpha)$ is a tautology and $((\neg \alpha) \land \alpha)$ is a  contradiction._
+
+$$\begin{array}{|c|c|c|c|c|}
+   \text{Truth assigment} & \alpha & (\neg \alpha) & ((\neg \alpha) \lor \alpha) & ((\neg \alpha) \land \alpha) \\
+   \hline
+   v_1                    & T      & F             & T                           & F                              \\
+   \hline
+   v_2                    & F      & T             & T                           & F                              \\ 
+   \end{array}$$
+
+__Problem 6__ _Prove that a formula $\beta$ is a tautology if and only if $(\neg \beta)$ is a contradiction._
+
+- $\begin{split}
+   \beta \text{ is a tautology} & \iff (\text{for all } v)(v \text{ is a truth assigment} \implies v(\beta) = T) \\
+   & \iff  (\text{for all } v)(v \text{ is a truth assigment} \implies v((\neg \beta)) = F) \\
+   & \iff (\neg \beta) \text{ is a contradiction}
+   \end{split}$
+   
+__Definition__ A set of formulas $\Sigma$ _implies_ a formula $\varphi$,  written as $\Sigma \vDash \varphi$,  if every truth assignment $v$ which satisfies $\Sigma$ also satisfies $\varphi$.  We will often write $\Sigma \nvDash \varphi$ if it is not the case that $\Sigma \models \varphi$.  In the case where $\Sigma$ is empty,  we will usually write $\vDash \varphi$ instead of $\emptyset \vDash \varphi$. Similarly,  if $\Delta$ and $\Gamma$ are sets of formulas,  then $\Delta$ _implies_ $\Gamma$,  written as $\Delta \vDash \Gamma$,  if every truth assignment $v$ which satisfies $\Delta$ also satisfies $\Gamma$.
+
+- $\Sigma \vDash \varphi \iff (\text{for all } v)(v \text{ is a truth assigment and }(\text{for all } \sigma)(\sigma \in \Sigma \implies v(\sigma) = T) \implies v(\varphi) = T)$
+
+- $\Sigma \nvDash \varphi \iff (\text{exists } v)(v \text{ is a truth assigment and }(\text{for all } \sigma)(\sigma \in \Sigma \implies v(\sigma) = T) \text{ and } v(\varphi) = F)$
+
+    + Note that a formula $\varphi$ is a tautology if and only if $\vDash \varphi$,  and a contradiction if and only if $\vDash (\lnot \varphi)$
+    
+        + $\begin{split}
+           \vDash \varphi & \iff \emptyset \vDash \varphi \\
+           & \iff (\text{for all } v)(v \text{ is a truth assigment and }(\text{for all } \sigma)(\sigma \in \emptyset \implies v(\sigma) = T) \implies v(\varphi) = T) \\
+           & \iff (\text{for all } v)(v \text{ is a truth assigment} \implies v(\varphi) = T) \\
+           & \iff \varphi \text{ is a tautology}
+           \end{split}$
+           
+        + $\begin{split}
+           \vDash (\neg \varphi) & \iff \emptyset \vDash (\neg \varphi) \\
+           & \iff (\text{for all } v)(v \text{ is a truth assigment and }(\text{for all } \sigma)(\sigma \in \emptyset \implies v(\sigma) = T) \implies v((\neg \varphi)) = T) \\
+           & \iff (\text{for all } v)(v \text{ is a truth assigment and }(\text{for all } \sigma)(\sigma \in \emptyset \implies v(\sigma) = T) \implies v(\varphi) = F) \\
+           & \iff (\text{for all } v)(v \text{ is a truth assigment} \implies v(\varphi) = F) \\
+           & \iff \varphi \text{ is a contradiction}
+           \end{split}$
+           
+            + Remember that $(\text{for all } \sigma)(\sigma \in \emptyset \implies v(\sigma) = T)$ is always true because $\sigma \in \emptyset$ is false
+
+__Problem 7__ _If $\Gamma$ and $\Sigma$ are sets of formulas such that $\Gamma \subseteq \Sigma$,  then $\Sigma \vDash \Gamma$._
+
+- $\begin{split}
+    \sigma \in \Sigma \text{ and } v(\sigma) = T  \text{ and } \varphi \in \Gamma & \implies \varphi \in \Sigma \text{ and } v(\varphi) = T \\
+    & \implies \Sigma \vDash \Gamma
+    \end{split}$
+    
+__Problem 8__ _How can one check whether or not $\Sigma \vDash \varphi$ for a formula $\varphi$ and a finite set of formulas $\Sigma$?_
 
 # Bibliography
 

@@ -1695,7 +1695,7 @@ summary {
 <div id="TOC">
 <ul>
 <li><a href="#truth-assignments"><span class="toc-section-number">1</span> Truth Assignments</a><ul>
-<li><a href="#problems-1-4-and-solutions"><span class="toc-section-number">1.1</span> Problems 1-4 and solutions</a></li>
+<li><a href="#problems-1-10-and-solutions"><span class="toc-section-number">1.1</span> Problems 1-10 and solutions</a></li>
 </ul></li>
 <li><a href="#bibliography">Bibliography</a></li>
 </ul>
@@ -1744,16 +1744,166 @@ text-align: justify}
    \hline
    T   &amp; F   &amp; T          &amp; F             &amp; F
    \end{array}\]</span></p>
-<div id="problems-1-4-and-solutions" class="section level2">
-<h2><span class="header-section-number">1.1</span> Problems 1-4 and solutions</h2>
+<div id="problems-1-10-and-solutions" class="section level2">
+<h2><span class="header-section-number">1.1</span> Problems 1-10 and solutions</h2>
 <p><strong>Problem 1</strong> Suppose <span class="math inline">\(v\)</span> is a truth assignment such that <span class="math inline">\(v(A_0) = v(A_2) = T\)</span> and <span class="math inline">\(v(A_1) = v(A_3) = F\)</span>. Find <span class="math inline">\(v(\alpha)\)</span> if <span class="math inline">\(\alpha\)</span> is:</p>
 <ul>
-<li><p><span class="math inline">\(\neg A_2 \to \neg A_3\)</span></p></li>
-<li><p><span class="math inline">\(\neg A_2 \to A_3\)</span></p></li>
-<li><p><span class="math inline">\(\lnot ( \neg A_0 \to A_1)\)</span></p></li>
-<li><p><span class="math inline">\(A_0 \lor A_1\)</span></p></li>
-<li><p><span class="math inline">\(A_0 \land A_1\)</span></p></li>
+<li><span class="math inline">\(\neg A_2 \to \neg A_3\)</span></li>
 </ul>
+<p><span class="math display">\[\begin{array}{|c|c|c|c|c|}
+   A_2 &amp; A_3 &amp; (\neg A_2) &amp; (\neg A_3) &amp; ((\neg A_2) \to (\neg A_3)) \\
+   \hline
+   T   &amp; F   &amp; F          &amp; T          &amp; T
+   \end{array}\]</span></p>
+<ul>
+<li><span class="math inline">\(\neg A_2 \to A_3\)</span></li>
+</ul>
+<p><span class="math display">\[\begin{array}{|c|c|c|c}
+   A_2 &amp; A_3 &amp; (\neg A_2) &amp; ((\neg A_2) \to A_3) \\
+   \hline
+   T   &amp; F   &amp; F          &amp; T
+   \end{array}\]</span></p>
+<ul>
+<li><span class="math inline">\(\neg ( \neg A_0 \to A_1)\)</span></li>
+</ul>
+<p><span class="math display">\[\begin{array}{|c|c|c|c|c|}
+   A_0 &amp; A_1 &amp; (\neg A_0) &amp; ((\neg A_0) \to A_1) &amp; (\neg ( (\neg A_0) \to A_1)) \\
+   \hline
+   T   &amp; F   &amp; F          &amp; T                    &amp; F
+   \end{array}\]</span></p>
+<ul>
+<li><span class="math inline">\(A_0 \lor A_1\)</span></li>
+</ul>
+<p><span class="math display">\[\begin{array}{|c|c|c|c|c|}
+   A_0 &amp; A_1 &amp; (\neg A_0) &amp; ((\neg A_0) \to A_1) &amp; (A_0 \lor A_1) \\
+   \hline
+   T   &amp; F   &amp; F          &amp; T                    &amp; T
+   \end{array}\]</span></p>
+<ul>
+<li><span class="math inline">\(A_0 \land A_1\)</span></li>
+</ul>
+<p><span class="math display">\[\begin{array}{|c|c|c|c|c|}
+   A_0 &amp; A_1 &amp; (\neg A_1) &amp; (A_0 \to (\neg A_1)) &amp; (\neg ( A_0 \to (\neg A_1))) &amp; (A_0 \land A_1) \\
+   \hline
+   T   &amp; F   &amp; T          &amp; T                    &amp; F                            &amp; F
+   \end{array}\]</span></p>
+<p>The following solution of the problem asserts that only the truth values of the atomic sentences in the formula matter.</p>
+<p><strong>Problem 2</strong> <em>Suppose <span class="math inline">\(\delta\)</span> is any formula and <span class="math inline">\(u\)</span> and <span class="math inline">\(v\)</span> are truth assignments such that <span class="math inline">\(u(A_n) = v(A_n)\)</span> for all atomic formulas <span class="math inline">\(A_n\)</span> which occur in <span class="math inline">\(\delta\)</span>. Then <span class="math inline">\(u(\delta) = v(\delta)\)</span>.</em></p>
+<ul>
+<li><p>Proof by strong induction where <span class="math inline">\(n\)</span> is the number of connectives in a formula of <span class="math inline">\(\mathcal{L}_P\)</span></p>
+<ul>
+<li><p><em>Base step</em> <span class="math inline">\((n = 0)\)</span>: If <span class="math inline">\(\delta\)</span> is a formula with 0 connectives it must be an atomic formula. Therefore <span class="math inline">\(u(\delta) = v(\delta)\)</span></p></li>
+<li><p><em>Induction hypothesis</em> <span class="math inline">\((n \leq k)\)</span>: If <span class="math inline">\(\delta\)</span> is a formula with <span class="math inline">\(n \leq k\)</span> connectives then if <span class="math inline">\(u\)</span> and <span class="math inline">\(v\)</span> are truth assignments such that <span class="math inline">\(u(A_n) = v(A_n)\)</span> for all atomic formulas <span class="math inline">\(A_n\)</span> which occur in <span class="math inline">\(\delta\)</span> we have that <span class="math inline">\(u(\delta) = v(\delta)\)</span></p></li>
+<li><p><em>Induction step</em> <span class="math inline">\((n = k + 1)\)</span>: If <span class="math inline">\(\delta\)</span> is a formula with <span class="math inline">\(n = k + 1\)</span> connectives then we have two possibilities:</p>
+<ul>
+<li><p><span class="math inline">\(\delta = (\neg \alpha)\)</span> where <span class="math inline">\(\alpha\)</span> has <span class="math inline">\(n = k\)</span> connectives</p></li>
+<li><p><span class="math inline">\(\delta = (\alpha \to \beta)\)</span> where <span class="math inline">\(\alpha\)</span> and <span class="math inline">\(\beta\)</span> have <span class="math inline">\(n \leq k\)</span> connectives</p>
+<ul>
+<li><p>If <span class="math inline">\(\delta = (\neg \alpha)\)</span> then by the <em>induction hypothesis</em> <span class="math inline">\(u(\alpha) = v(\alpha)\)</span>. Therefore <span class="math inline">\(u((\neg \alpha)) = v((\neg \alpha))\)</span> so <span class="math inline">\(u(\delta) = v(\delta)\)</span></p></li>
+<li><p>If <span class="math inline">\(\gamma = (\alpha \to \beta)\)</span> then by the <em>induction hypothesis</em> <span class="math inline">\(u(\alpha) = v(\alpha)\)</span> and <span class="math inline">\(u(\beta) = v(\beta)\)</span>. Therefore <span class="math inline">\(u((\alpha \to \beta)) = v((\alpha \to \beta))\)</span> so <span class="math inline">\(u(\delta) = v(\delta)\)</span></p></li>
+</ul></li>
+</ul></li>
+</ul></li>
+</ul>
+<p><strong>Problem 3</strong> Suppose <span class="math inline">\(u\)</span> and <span class="math inline">\(v\)</span> are truth assignments such that <span class="math inline">\(u(A_n) = v(A_n)\)</span> for every atomic formula <span class="math inline">\(A_n\)</span>. Then <span class="math inline">\(u = v\)</span>.</p>
+<ul>
+<li><p><span class="math inline">\(u\)</span> and <span class="math inline">\(v\)</span> are functions therefore to prove that <span class="math inline">\(u = v\)</span> we have to check that [See <span class="citation">(Mendelson <a href="#ref-mendelson_number_2008" role="doc-biblioref">2008</a>, Chapter 1, Section 1.18, Exercise 3)</span>]:</p>
+<ul>
+<li><p><span class="math inline">\(u\)</span> and <span class="math inline">\(v\)</span> have the same domain</p></li>
+<li><p>For any <span class="math inline">\(x\)</span> in the domain, <span class="math inline">\(u(x) = v(x)\)</span></p>
+<ul>
+<li><p>The domain of <span class="math inline">\(u\)</span> and <span class="math inline">\(v\)</span> are the same and corresponds to all the formulas of <span class="math inline">\(\mathcal{L}_P\)</span></p></li>
+<li><p>In <strong>Problem 2</strong> we prove that if <span class="math inline">\(u(A_n) = v(A_n)\)</span> for all atomic formulas <span class="math inline">\(A_n\)</span> which occur in <span class="math inline">\(\delta\)</span> then <span class="math inline">\(u(\delta) = v(\delta)\)</span>. Therefore for any <span class="math inline">\(\delta\)</span> that is a formula, <span class="math inline">\(u(\delta) = v(\delta)\)</span></p></li>
+</ul></li>
+</ul></li>
+<li><p>Taking into account the above results we have that <span class="math inline">\(u = v\)</span></p></li>
+</ul>
+<p><strong>Problem 4</strong> <em>If <span class="math inline">\(\alpha\)</span> and <span class="math inline">\(\beta\)</span> are formulas and <span class="math inline">\(v\)</span> is a truth assignment, then:</em></p>
+<ul>
+<li><p><span class="math inline">\(v(\neg \alpha) = T\)</span> if and only if <span class="math inline">\(v(\alpha) = F\)</span></p>
+<ul>
+<li><p>If <span class="math inline">\(v(\neg \alpha) = T\)</span> by definition <span class="math inline">\(v(\alpha) = F\)</span></p></li>
+<li><p>If <span class="math inline">\(v(\alpha) = F\)</span> assume that <span class="math inline">\(v(\neg \alpha) = F\)</span></p>
+<ul>
+<li>If <span class="math inline">\(v(\neg \alpha) = F\)</span> by definition <span class="math inline">\(v(\alpha) = T\)</span>. But <span class="math inline">\(v(\alpha) = F\)</span> and <span class="math inline">\(v(\alpha) = T\)</span> which is a contradiction because <span class="math inline">\(v\)</span> is a truth assigment. Therefore <span class="math inline">\(v(\neg \alpha) = T\)</span></li>
+</ul></li>
+</ul></li>
+<li><p><span class="math inline">\(v(\alpha \to \beta) = T\)</span> if and only if <span class="math inline">\(v(\beta) = T\)</span> whenever <span class="math inline">\(v(\alpha) = T\)</span></p>
+<ul>
+<li><p>If <span class="math inline">\(v(\alpha \to \beta) = T\)</span> and <span class="math inline">\(v(\alpha) = T\)</span> by definition <span class="math inline">\(v(\beta) = T\)</span></p></li>
+<li><p>If <span class="math inline">\(v(\beta) = T\)</span> and <span class="math inline">\(v(\alpha) = T\)</span> assume <span class="math inline">\(v(\alpha \to \beta) = F\)</span></p>
+<ul>
+<li>If <span class="math inline">\(v(\alpha \to \beta) = F\)</span> then <span class="math inline">\(v(\alpha) = T\)</span> and <span class="math inline">\(v(\beta) = F\)</span>. But <span class="math inline">\(v(\beta) = T\)</span> and <span class="math inline">\(v(\beta) = F\)</span> which is a contradiction because <span class="math inline">\(v\)</span> is a truth assigment. Therefore <span class="math inline">\(v(\alpha \to \beta) = T\)</span></li>
+</ul></li>
+</ul></li>
+<li><p><span class="math inline">\(v(\alpha \land \beta) = T\)</span> if and only if <span class="math inline">\(v(\alpha) = T\)</span> and <span class="math inline">\(v(\beta) = T\)</span></p>
+<ul>
+<li><p><span class="math inline">\(\begin{split}  v(\alpha \land \beta) = T &amp; \iff v((\neg (\alpha \to (\neg \beta)))) = T \\  &amp; \iff v((\alpha \to (\neg \beta))) = F \\  &amp; \implies v(\alpha) = T \text{ and } v((\neg \beta)) = F \\  &amp; \iff v(\alpha) = T \text{ and } v(\beta) = T  \end{split}\)</span></p></li>
+<li><p>If <span class="math inline">\(v(\alpha) = T\)</span> and <span class="math inline">\(v(\beta) = T\)</span> assume that <span class="math inline">\(v(\alpha \land \beta) = F\)</span>.</p>
+<ul>
+<li>If <span class="math inline">\(v(\alpha \land \beta) = F\)</span> then <span class="math inline">\(v((\neg (\alpha \to (\neg \beta)))) = F\)</span> so <span class="math inline">\(v((\alpha \to (\neg \beta))) = T\)</span>. Hence <span class="math inline">\(v(\alpha) = F\)</span> or <span class="math inline">\(v((\neg \beta)) = T\)</span> which means that <span class="math inline">\(v(\alpha) = F\)</span> or <span class="math inline">\(v(\beta) = F\)</span>. But we have also that <span class="math inline">\(v(\alpha) = T\)</span> and <span class="math inline">\(v(\beta) = T\)</span> which is a contradiction because <span class="math inline">\(v\)</span> is a truth assigment. Therefore <span class="math inline">\(v(\alpha \land \beta) = T\)</span></li>
+</ul></li>
+</ul></li>
+<li><p><span class="math inline">\(v(\alpha \lor \beta) = T\)</span> if and only if <span class="math inline">\(v(\alpha) = T\)</span> or <span class="math inline">\(v(\beta) = T\)</span></p>
+<ul>
+<li><p><span class="math inline">\(\begin{split}  v(\alpha \lor \beta) = T &amp; \iff v(((\neg \alpha) \to \beta)) = T \\  &amp; \implies v((\neg \alpha)) = F \text{ or } v(\beta) = T \\  &amp; \iff v(\alpha) = T \text{ or } v(\beta) = T \\  \end{split}\)</span></p></li>
+<li><p>If <span class="math inline">\(v(\alpha) = T\)</span> or <span class="math inline">\(v(\beta) = T\)</span> assume that <span class="math inline">\(v(\alpha \lor \beta) = F\)</span>.</p>
+<ul>
+<li>If <span class="math inline">\(v(\alpha \lor \beta) = F\)</span> then <span class="math inline">\(v(((\neg \alpha) \to \beta)) = F\)</span> so <span class="math inline">\(v((\neg \alpha)) = T\)</span> and <span class="math inline">\(v(\beta) = F\)</span>. Hence <span class="math inline">\(v(\alpha) = F\)</span> and <span class="math inline">\(v(\beta) = F\)</span>. But we have also that <span class="math inline">\(v(\alpha) = T\)</span> or <span class="math inline">\(v(\beta) = T\)</span> which is a contradiction because <span class="math inline">\(v\)</span> is a truth assigment. Therefore <span class="math inline">\(v(\alpha \lor \beta) = T\)</span></li>
+</ul></li>
+</ul></li>
+<li><p><span class="math inline">\(v(\alpha \leftrightarrow \beta) = T\)</span> if and only if <span class="math inline">\(v(\alpha) = v(\beta)\)</span></p>
+<ul>
+<li><p><span class="math inline">\(\begin{split}  v(\alpha \leftrightarrow \beta) = T &amp; \iff v(((\alpha \to \beta) \land (\beta \to \alpha))) = T \\  &amp; \iff v((\alpha \to \beta)) = T \text{ and } v((\beta \to \alpha)) = T \\  &amp; \implies v(\alpha) = F \text{ or } v(\beta) = T \text{ and } v(\beta) = F \text{ or } v(\alpha) = T \\  &amp; \iff v(\alpha) = F \text{ and } v(\beta) = F \text{ or } v(\alpha) = T \text{ and } v(\beta) = T \\  &amp; \iff v(\alpha) = v(\beta)  \end{split}\)</span></p></li>
+<li><p>If <span class="math inline">\(v(\alpha) = v(\beta)\)</span> assume <span class="math inline">\(v(\alpha \leftrightarrow \beta) = F\)</span></p>
+<ul>
+<li><p><span class="math inline">\(\begin{split}  v(\alpha \leftrightarrow \beta) = F &amp; \iff v(((\alpha \to \beta) \land (\beta \to \alpha))) = F \\  &amp; \iff v((\alpha \to \beta)) = F \text{ or } v((\beta \to \alpha)) = F \\  &amp; \implies v(\alpha) = T \text{ and } v(\beta) = F \text{ or } v(\beta) = T \text{ and } v(\alpha) = F \\  &amp; \iff v(\alpha) \neq v(\beta) \\  &amp; \implies \text{There is a contradiction because } v(\alpha) = v(\beta)  \end{split}\)</span></p></li>
+<li><p>Therefore <span class="math inline">\(v(\alpha \leftrightarrow \beta) = T\)</span></p></li>
+</ul></li>
+</ul></li>
+</ul>
+<p><strong>Definition</strong> If <span class="math inline">\(v\)</span> is a truth assignment and <span class="math inline">\(\varphi\)</span> is a formula, we will often say that <span class="math inline">\(v\)</span> <em>satisfies</em> <span class="math inline">\(\varphi\)</span> if <span class="math inline">\(v(\varphi) = T\)</span>. Similarly, if <span class="math inline">\(\Sigma\)</span> is a set of formulas, we will often say that <span class="math inline">\(v\)</span> satisfies <span class="math inline">\(\Sigma\)</span> if <span class="math inline">\(v(\sigma) = T\)</span> for every <span class="math inline">\(\sigma \in \Sigma\)</span>. We will say that <span class="math inline">\(\varphi\)</span> (respectively, <span class="math inline">\(\Sigma\)</span>) is <em>satisfiable</em> if there is some truth assignment which satisfies it.</p>
+<ul>
+<li><p><span class="math inline">\(v \text{ satisfies } \varphi \iff v(\varphi) = T\)</span></p></li>
+<li><p><span class="math inline">\(v \text{ satisfies } \Sigma \iff (\text{for all } \sigma)(\sigma \in \Sigma \implies v(\sigma) = T)\)</span></p></li>
+</ul>
+<p><strong>Definition</strong> A formula <span class="math inline">\(\varphi\)</span> is a <em>tautology</em> if it is satisfied by every truth assignment. A formula <span class="math inline">\(\psi\)</span> is a <em>contradiction</em> if there is no truth assignment which satisfies it.</p>
+<ul>
+<li><p><span class="math inline">\(\varphi \text{ is a tautology} \iff (\text{for all } v)(v \text{ is a truth assigment} \implies v(\varphi) = T)\)</span></p></li>
+<li><p><span class="math inline">\(\psi \text{ is a contradiction} \iff (\text{for all } v)(v \text{ is a truth assigment} \implies v(\psi) = F)\)</span></p></li>
+</ul>
+<p><strong>Problem 5</strong> <em>Prove that if <span class="math inline">\(\alpha\)</span> is any formula, then <span class="math inline">\(((\neg \alpha) \lor \alpha)\)</span> is a tautology and <span class="math inline">\(((\neg \alpha) \land \alpha)\)</span> is a contradiction.</em></p>
+<p><span class="math display">\[\begin{array}{|c|c|c|c|c|}
+   \text{Truth assigment} &amp; \alpha &amp; (\neg \alpha) &amp; ((\neg \alpha) \lor \alpha) &amp; ((\neg \alpha) \land \alpha) \\
+   \hline
+   v_1                    &amp; T      &amp; F             &amp; T                           &amp; F                              \\
+   \hline
+   v_2                    &amp; F      &amp; T             &amp; T                           &amp; F                              \\ 
+   \end{array}\]</span></p>
+<p><strong>Problem 6</strong> <em>Prove that a formula <span class="math inline">\(\beta\)</span> is a tautology if and only if <span class="math inline">\((\neg \beta)\)</span> is a contradiction.</em></p>
+<ul>
+<li><span class="math inline">\(\begin{split}  \beta \text{ is a tautology} &amp; \iff (\text{for all } v)(v \text{ is a truth assigment} \implies v(\beta) = T) \\  &amp; \iff (\text{for all } v)(v \text{ is a truth assigment} \implies v((\neg \beta)) = F) \\  &amp; \iff (\neg \beta) \text{ is a contradiction}  \end{split}\)</span></li>
+</ul>
+<p><strong>Definition</strong> A set of formulas <span class="math inline">\(\Sigma\)</span> <em>implies</em> a formula <span class="math inline">\(\varphi\)</span>, written as <span class="math inline">\(\Sigma \vDash \varphi\)</span>, if every truth assignment <span class="math inline">\(v\)</span> which satisfies <span class="math inline">\(\Sigma\)</span> also satisfies <span class="math inline">\(\varphi\)</span>. We will often write <span class="math inline">\(\Sigma \nvDash \varphi\)</span> if it is not the case that <span class="math inline">\(\Sigma \models \varphi\)</span>. In the case where <span class="math inline">\(\Sigma\)</span> is empty, we will usually write <span class="math inline">\(\vDash \varphi\)</span> instead of <span class="math inline">\(\emptyset \vDash \varphi\)</span>. Similarly, if <span class="math inline">\(\Delta\)</span> and <span class="math inline">\(\Gamma\)</span> are sets of formulas, then <span class="math inline">\(\Delta\)</span> <em>implies</em> <span class="math inline">\(\Gamma\)</span>, written as <span class="math inline">\(\Delta \vDash \Gamma\)</span>, if every truth assignment <span class="math inline">\(v\)</span> which satisfies <span class="math inline">\(\Delta\)</span> also satisfies <span class="math inline">\(\Gamma\)</span>.</p>
+<ul>
+<li><p><span class="math inline">\(\Sigma \vDash \varphi \iff (\text{for all } v)(v \text{ is a truth assigment and }(\text{for all } \sigma)(\sigma \in \Sigma \implies v(\sigma) = T) \implies v(\varphi) = T)\)</span></p></li>
+<li><p><span class="math inline">\(\Sigma \nvDash \varphi \iff (\text{exists } v)(v \text{ is a truth assigment and }(\text{for all } \sigma)(\sigma \in \Sigma \implies v(\sigma) = T) \text{ and } v(\varphi) = F)\)</span></p>
+<ul>
+<li><p>Note that a formula <span class="math inline">\(\varphi\)</span> is a tautology if and only if <span class="math inline">\(\vDash \varphi\)</span>, and a contradiction if and only if <span class="math inline">\(\vDash (\lnot \varphi)\)</span></p>
+<ul>
+<li><p><span class="math inline">\(\begin{split}  \vDash \varphi &amp; \iff \emptyset \vDash \varphi \\  &amp; \iff (\text{for all } v)(v \text{ is a truth assigment and }(\text{for all } \sigma)(\sigma \in \emptyset \implies v(\sigma) = T) \implies v(\varphi) = T) \\  &amp; \iff (\text{for all } v)(v \text{ is a truth assigment} \implies v(\varphi) = T) \\  &amp; \iff \varphi \text{ is a tautology}  \end{split}\)</span></p></li>
+<li><p><span class="math inline">\(\begin{split}  \vDash (\neg \varphi) &amp; \iff \emptyset \vDash (\neg \varphi) \\  &amp; \iff (\text{for all } v)(v \text{ is a truth assigment and }(\text{for all } \sigma)(\sigma \in \emptyset \implies v(\sigma) = T) \implies v((\neg \varphi)) = T) \\  &amp; \iff (\text{for all } v)(v \text{ is a truth assigment and }(\text{for all } \sigma)(\sigma \in \emptyset \implies v(\sigma) = T) \implies v(\varphi) = F) \\  &amp; \iff (\text{for all } v)(v \text{ is a truth assigment} \implies v(\varphi) = F) \\  &amp; \iff \varphi \text{ is a contradiction}  \end{split}\)</span></p>
+<ul>
+<li>Remember that <span class="math inline">\((\text{for all } \sigma)(\sigma \in \emptyset \implies v(\sigma) = T)\)</span> is always true because <span class="math inline">\(\sigma \in \emptyset\)</span> is false</li>
+</ul></li>
+</ul></li>
+</ul></li>
+</ul>
+<p><strong>Problem 7</strong> <em>If <span class="math inline">\(\Gamma\)</span> and <span class="math inline">\(\Sigma\)</span> are sets of formulas such that <span class="math inline">\(\Gamma \subseteq \Sigma\)</span>, then <span class="math inline">\(\Sigma \vDash \Gamma\)</span>.</em></p>
+<ul>
+<li><span class="math inline">\(\begin{split}  \sigma \in \Sigma \text{ and } v(\sigma) = T \text{ and } \varphi \in \Gamma &amp; \implies \varphi \in \Sigma \text{ and } v(\varphi) = T \\  &amp; \implies \Sigma \vDash \Gamma  \end{split}\)</span></li>
+</ul>
+<p><strong>Problem 8</strong> <em>How can one check whether or not <span class="math inline">\(\Sigma \vDash \varphi\)</span> for a formula <span class="math inline">\(\varphi\)</span> and a finite set of formulas <span class="math inline">\(\Sigma\)</span>?</em></p>
 </div>
 </div>
 <div id="bibliography" class="section level1 unnumbered">
@@ -1761,6 +1911,9 @@ text-align: justify}
 <div id="refs" class="references">
 <div id="ref-bilaniuk_problem_2009">
 <p>Bilaniuk, Stefan. 2009. <em>A Problem Course in Mathematical Logic</em>. <a href="http://euclid.trentu.ca/math/sb/pcml/">http://euclid.trentu.ca/math/sb/pcml/</a>.</p>
+</div>
+<div id="ref-mendelson_number_2008">
+<p>Mendelson, Elliott. 2008. <em>Number Systems and the Foundations of Analysis</em>. Mineola, N.Y: Dover Publications.</p>
 </div>
 </div>
 </div>

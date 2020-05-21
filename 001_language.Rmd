@@ -428,7 +428,7 @@ __Proof__
            & \implies \text{There is a contradiction because } \varphi \text{ is a formula}  
               \end{split}$
               
-        + Therefore it is not the case that $\gamma = (\neg \alpha) \land \gamma = (\varphi \to \alpha)$
+        + Therefore it is not the case that $\gamma = (\neg \alpha) \text{ and } \gamma = (\varphi \to \alpha)$
             
     + If $\gamma$ satisfy exactly one of those conditions then:
         
@@ -437,7 +437,7 @@ __Proof__
         + If $\gamma = (\neg \alpha)$ and $\gamma = (\neg \varphi)$ then:
             
             + $\begin{split}
-                   \gamma = (\neg \alpha) \land \gamma = (\neg \varphi) & \iff \neg \alpha) = \neg \varphi) \\
+                   \gamma = (\neg \alpha) \text{ and } \gamma = (\neg \varphi) & \iff \neg \alpha) = \neg \varphi) \\
                    & \iff \neg \alpha = \neg \varphi \\
                    & \iff \alpha = \varphi
                    \end{split}$
@@ -446,10 +446,10 @@ __Proof__
         
         
             + $\begin{split}
-               \gamma = (\alpha \to \beta) \land \gamma = (\varphi \to \theta) & \iff \alpha \to \beta) = \varphi \to \theta) \\
+               \gamma = (\alpha \to \beta) \text{ and } \gamma = (\varphi \to \theta) & \iff \alpha \to \beta) = \varphi \to \theta) \\
                & \iff \alpha \to \beta = \varphi \to \theta \\
-               & \iff \alpha = \varphi \; \land \; \to \beta = \to \theta \\
-               & \iff \alpha = \varphi \; \land \; \beta = \theta
+               & \iff \alpha = \varphi \text{ and } \to \beta = \to \theta \\
+               & \iff \alpha = \varphi \text{ and } \beta = \theta
                    \end{split}$
         
 To understand the importance of __unique readability__ check out [@zach_sets_2019, Chapter 5, Section 5.4] 
