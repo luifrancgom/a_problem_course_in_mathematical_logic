@@ -230,13 +230,17 @@ __Definition__ If $v$ is a truth assignment and $\varphi$ is a formula, we will 
 
 - $v \text{ satisfies } \Sigma \iff (\text{for all } \sigma)(\sigma \in \Sigma \implies v(\sigma) = T)$
 
+- $\varphi \text{ is satisfiable } \iff (\text{ exists } v)(v \text{ is a truth assignment} \implies v(\varphi) = T)$
+
+- $\Sigma \text{ is satisfiable } \iff (\text{ exists } v)(v \text{ is a truth assignment} \implies (\text{for all } \sigma)(\sigma \in \Sigma \implies v(\sigma) = T))$
+
 __Definition__ A formula $\varphi$ is a _tautology_ if it is satisfied by every truth assignment.  A formula $\psi$ is a _contradiction_ if there is no truth assignment which satisfies it.
 
 - $\varphi \text{ is a tautology} \iff (\text{for all } v)(v \text{ is a truth assigment} \implies v(\varphi) = T)$
 
 - $\psi \text{ is a contradiction} \iff (\text{for all } v)(v \text{ is a truth assigment} \implies v(\psi) = F)$
 
-__Problem 5__ _Prove that if $\alpha$ is any formula,  then $((\neg \alpha) \lor \alpha)$ is a tautology and $((\neg \alpha) \land \alpha)$ is a  contradiction._
+__Problem 5__ _If $\alpha$ is any formula,  then $((\neg \alpha) \lor \alpha)$ is a tautology and $((\neg \alpha) \land \alpha)$ is a  contradiction._
 
 $$\begin{array}{|c|c|c|c|c|}
    \text{Truth assigment} & \alpha & (\neg \alpha) & ((\neg \alpha) \lor \alpha) & ((\neg \alpha) \land \alpha) \\
@@ -246,7 +250,7 @@ $$\begin{array}{|c|c|c|c|c|}
    v_2                    & F      & T             & T                           & F                              \\ 
    \end{array}$$
 
-__Problem 6__ _Prove that a formula $\beta$ is a tautology if and only if $(\neg \beta)$ is a contradiction._
+__Problem 6__ _A formula $\beta$ is a tautology if and only if $(\neg \beta)$ is a contradiction._
 
 - $\begin{split}
    \beta \text{ is a tautology} & \iff (\text{for all } v)(v \text{ is a truth assigment} \implies v(\beta) = T) \\
@@ -277,7 +281,11 @@ __Definition__ A set of formulas $\Sigma$ _implies_ a formula $\varphi$,  writte
            & \iff \varphi \text{ is a contradiction}
            \end{split}$
            
-            + Remember that $(\text{for all } \sigma)(\sigma \in \emptyset \implies v(\sigma) = T)$ is always true because $\sigma \in \emptyset$ is false
+            + Remember that $(\text{for all } \sigma)(\sigma \in \emptyset \implies v(\sigma) = T)$ is always true because $\sigma \in \emptyset$ is false so any truth assignment satisfies $\emptyset$. Also any truth assignment satisfies $\varphi$ if $\varphi$ is a tautology. That is why $\emptyset \vDash \varphi$  
+
+    + Note that if there is no truth assignment that satisfies $\Sigma$ then for any $\varphi$ we have that $\Sigma \vDash \varphi$
+    
+        + In this case $(\text{for all } \sigma)(\sigma \in \Sigma \implies v(\sigma) = T)$ is false so $(\text{for all } v)(v \text{ is a truth assigment and }(\text{for all } \sigma)(\sigma \in \Sigma \implies v(\sigma) = T) \implies v(\varphi) = T)$ is true
 
 __Problem 7__ _If $\Gamma$ and $\Sigma$ are sets of formulas such that $\Gamma \subseteq \Sigma$,  then $\Sigma \vDash \Gamma$._
 
@@ -288,5 +296,127 @@ __Problem 7__ _If $\Gamma$ and $\Sigma$ are sets of formulas such that $\Gamma \
     
 __Problem 8__ _How can one check whether or not $\Sigma \vDash \varphi$ for a formula $\varphi$ and a finite set of formulas $\Sigma$?_
 
-# Bibliography
+- We have that $\Sigma = \{ \sigma_1, \sigma_2, ..., \sigma_n \}$
 
+- We have that each $\sigma_i \in \Sigma$ with $i = 1, 2, \dots, n$ and $\varphi$ satisfy exactly one of the following conditions:
+
+    + Is equal to an atomic formula 
+    
+    + Is equal to $(\neg \alpha)$ where $\alpha$ a formula
+    
+    + Is equal to $(\alpha \to \beta)$ where $\alpha$ and $\beta$ are formulas
+    
+- Taking into account the above observations we proceed in the following way:
+
+    + Identify the unique atomic formulas that appear in $\Sigma \cup \varphi$
+    
+    + If there are $m$ unique atomic formulas build a truth table with $2^m + 1$ rows and $m$ columns where the first row includes the unique atomic formulas and the remaining rows represent the possible truth assignments 
+    
+    + If any formula of $\Sigma \cup \varphi$ is equal to $(\neg \alpha)$ or $(\alpha \to \beta)$ add the necessary columns to the truth table with these formulas in the first row and in the remaining rows the corresponding truth values of these formulas  
+    
+    + Verify all the rows with values equal to true that correspond to columns with formulas that belongs to $\Sigma$
+    
+    + Verify if these rows also include only true values equal to true in the corresponding column where is $\varphi$
+    
+      + Note that we exclude cases where there is no $v$ that satisfies $\Sigma$ because we are not interested in these situations
+    
+        + Lets point out an example in which $\Sigma = \{ A_0, (A_0 \to (\neg A_2)), A_1 \}$, $\varphi = (\neg A_2)$ and we want to verify if $\Sigma \vDash \varphi$
+        
+            + $A_0, A_2, A_1$
+            
+            + $\begin{array}{|c|c|c|}
+                A_0 & A_2 & A_1 \\
+                \hline
+                F   & F   & F \\
+                F   & F   & T \\
+                F   & T   & F \\
+                F   & T   & T \\
+                T   & F   & F \\
+                T   & F   & T \\
+                T   & T   & F \\
+                T   & T   & T \\
+                \end{array}$
+
+            + $\begin{array}{|c|c|c|c|c}
+                A_0 & A_2 & A_1 & (A_0 \to (\neg A_2)) & (\neg A_2) \\
+                \hline
+                F   & F   & F & T                      & T          \\
+                F   & F   & T & T                      & T          \\
+                F   & T   & F & T                      & F          \\
+                F   & T   & T & T                      & F          \\
+                T   & F   & F & T                      & T          \\
+                T   & F   & T & T                      & T          \\
+                T   & T   & F & F                      & F          \\
+                T   & T   & T & F                      & F          \\
+                \end{array}$
+                
+            + $\begin{array}{|c|c|c|c|c|}
+                A_0              & A_2 & A_1            & (A_0 \to (\neg A_2)) & (\neg A_2) \\
+                \hline
+                F                & F   & F              & T                    & T          \\
+                F                & F   & T              & T                    & T          \\
+                F                & T   & F              & T                    & F          \\
+                F                & T   & T              & T                    & F          \\
+                T                & F   & F              & T                    & T          \\
+                \color{red}{T}   & F   & \color{red}{T} & \color{red}{T}       & T          \\
+                T                & T   & F              & F                    & F          \\
+                T                & T   & T              & F                    & F          \\
+                \end{array}$
+                
+            + $\begin{array}{|c|c|c|c|c|}
+                A_0              & A_2 & A_1            & (A_0 \to (\neg A_2)) & (\neg A_2)     \\
+                \hline
+                F                & F   & F              & T                    & T              \\
+                F                & F   & T              & T                    & T              \\
+                F                & T   & F              & T                    & F              \\
+                F                & T   & T              & T                    & F              \\
+                T                & F   & F              & T                    & T              \\
+                \color{red}{T}   & F   & \color{red}{T} & \color{red}{T}       & \color{red}{T} \\
+                T                & T   & F              & F                    & F              \\
+                T                & T   & T              & F                    & F              \\
+                \end{array}$
+                
+                + We conclude that $\Sigma \vDash \varphi$ is true
+
+__Problem 9__ Suppose $\Sigma$ is a set of formulas and $\psi$ and $\rho$ are formulas.  Then $\Sigma \cup \{ \psi \} \vDash \rho$ if and only if $\Sigma \vDash \psi \to \rho$.
+
+- $\begin{split}
+    \Sigma \cup \{ \psi \} \vDash \rho \text{ and } \sigma \in \Sigma \text{ and } v(\sigma) = T & \iff v(\psi) = T \text{ and } v(\rho) = T \text{ and } \sigma \in \Sigma \text{ and } v(\sigma) = T \\
+    & \iff v(\psi) = T \text{ and } v(\rho) = T \text{ and } \sigma \in \Sigma \text{ and } v(\sigma) = T \text{ and } v(\psi \to \rho) = T \\ 
+    & \iff v(\psi) = T \text{ and } \sigma \in \Sigma  \text{ and } v(\sigma) = T \text{ and } v(\psi \to \rho) = T \\
+    & \iff v(\psi) = T \text{ and } \sigma \in \Sigma \text{ and } v(\sigma) = T \text{ and } \Sigma \vDash \psi \to \rho
+    \end{split}$
+    
+__Problem 10__ A set of formulas $\Sigma$ is satisfiable if and only if there is no contradiction $\chi$ such that $\Sigma \vDash \chi$.
+
+- $\begin{split}
+   \text{There is no contradiction } \chi \text{ such that } \Sigma \vDash \chi 
+   & \iff \neg (\exists \chi)(\chi \text { is a contradiction} \implies \Sigma \vDash \chi) \\
+   & \iff (\forall \chi) \neg (\chi \text { is a contradiction} \implies \Sigma \vDash \chi) \\
+   & \iff (\forall \chi)(\chi \text { is a contradiction} \land \Sigma \nvDash \chi) \\
+   & \iff (\forall \chi)(\chi \text { is a contradiction} \land (\exists v)(v \text{ is a truth assignment} \land (\forall \sigma)( \sigma \in \Sigma \implies v(\sigma) = T) \land v(\chi) = F)) \\
+   & \iff \Sigma \text{ is satisfiable and } \chi \text{ is any contradiction}
+  \end{split}$
+  
+    + Taking into account that
+    
+        + $\begin{split}
+            \Sigma \vDash \chi
+            & \iff (\forall v)((v \text{ is a truth assignment} \land (\forall \sigma)(\sigma \in \Sigma \implies v(\sigma) = T)) \implies v(\chi) = T)
+            \end{split}$ 
+
+        + $\begin{split}
+            \Sigma \nvDash \chi
+            & \iff \neg \Sigma \vDash \chi \\  
+            & \iff \neg (\forall v)((v \text{ is a truth assignment} \land (\forall \sigma)(\sigma \in \Sigma \implies v(\sigma) = T)) \implies v(\chi) = T) \\
+            & \iff (\exists v) \neg ((v \text{ is a truth assignment} \land (\forall \sigma)(\sigma \in \Sigma \implies v(\sigma) = T)) \implies v(\chi) = T) \\
+            & \iff (\exists v)(v \text{ is a truth assignment} \land (\forall \sigma)(\sigma \in \Sigma \implies v(\sigma) = T) \land v(\chi) = F)
+            \end{split}$
+
+        + $\begin{split}
+            \Sigma \text{ is satisfiable}
+            & \iff (\exists v)(v \text{ is a truth assignment} \land (\forall \sigma)( \sigma \in \Sigma \implies v(\sigma) = T)) \\
+            \\
+            \end{split}$
+
+# Bibliography
